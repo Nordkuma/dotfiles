@@ -1,0 +1,69 @@
+# True color
+set -g default-terminal "xterm-256color"
+set -ag terminal-overrides ",xterm-256color:RGB"
+
+# Mouse
+set -g mouse on
+bind -T root WheelUpPane if-shell -F -t = "#{alternate_on}" "send-keys -M" "select-pane -t =; copy-mode -e; send-keys -M"
+bind -T root WheelDownPane if-shell -F -t = "#{alternate_on}" "send-keys -M" "select-pane -t =; send-keys -M"
+{{- if eq .chezmoi.os "linux" }}
+{{-   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "tee <&0 | clip.exe"
+{{-   else }}
+bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "xclip -selection clipboard"
+{{-   end }}
+{{- else if eq .chezmoi.os "darwin" }}
+bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "pbcopy"
+{{- end }}
+
+# Index
+set -g renumber-windows on
+set -g base-index 1
+setw -g pane-base-index 1
+
+# Pane
+set -g pane-border-style "fg=colour237"
+set -g pane-active-border-style "fg=colour244"
+
+# Status line
+setw -g status-style "fg=colour252,bg=colour237"
+set -g status-left "#[fg=colour237,bg=black]"
+set -g status-right "#[fg=colour237,bg=black]"
+set -g status-justify right
+setw -g window-status-format "#[fg=colour252] #I #W "
+setw -g window-status-current-format "#[fg=colour38,bg=colour237]#{?client_prefix,#[fg=colour220],}#[bg=colour38,fg=colour237]#{?client_prefix,#[bg=colour220],}#I #W#[fg=colour38,bg=colour237]#{?client_prefix,#[fg=colour220],}"
+
+# Copy mode
+setw -g mode-keys vi
+{{- if eq .chezmoi.os "linux" }}
+{{-   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+set -s copy-command 'tee <&0 | clip.exe'
+{{-   else }}
+set -s copy-command 'xclip -selection clipboard'
+{{-   end }}
+{{- else if eq .chezmoi.os "darwin" }}
+set -s copy-command 'pbcopy'
+{{- end }}
+
+# Prefix key
+unbind C-b
+set -g prefix C-q
+bind C-q send-prefix
+
+# Key bind
+bind c new-window -c "#{pane_current_path}"
+bind | split-window -h -c "#{pane_current_path}"
+bind - split-window -v -c "#{pane_current_path}"
+bind r source ~/.tmux.conf \; display "Reloaded!"
+bind -n S-left select-pane -L
+bind -n S-down select-pane -D
+bind -n S-up select-pane -U
+bind -n S-right select-pane -R
+
+# Plugin
+set -g @continuum-save-interval '15'
+set -g @continuum-restore 'on'
+
+# Load plugins
+run-shell ~/.tmux/plugins/tmux-resurrect/resurrect.tmux
+run-shell ~/.tmux/plugins/tmux-continuum/continuum.tmux

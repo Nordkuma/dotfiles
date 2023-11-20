@@ -1,0 +1,46 @@
+[".zsh/zsh-autosuggestions"]
+    type = "archive"
+    url = "https://github.com/zsh-users/zsh-autosuggestions/archive/master.tar.gz"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "672h"
+    include = ["*/*.zsh", "*/VERSION"]
+[".zsh/zsh-syntax-highlighting"]
+    type = "archive"
+    url = "https://github.com/zsh-users/zsh-syntax-highlighting/archive/master.tar.gz"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "672h"
+    include = ["*/*.zsh", "*/.version", "*/.revision-hash", "*/highlighters/**"]
+[".tmux/plugins/tmux-continuum"]
+    type = "archive"
+    url = "https://github.com/tmux-plugins/tmux-continuum/archive/master.tar.gz"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "672h"
+    include = ["*/*.tmux", "*/scripts/**"]
+[".tmux/plugins/tmux-resurrect"]
+    type = "archive"
+    url = "https://github.com/tmux-plugins/tmux-resurrect/archive/master.tar.gz"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "672h"
+    include = ["*/*.tmux", "*/save_command_strategies/**", "*/scripts/**", "*/strategies/**"]
+[".vim/pack/plugins/opt/onedark"]
+    type = "archive"
+    url = "https://github.com/joshdick/onedark.vim/archive/main.tar.gz"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "672h"
+[".vim/pack/plugins/start/lightline"]
+    type = "archive"
+    url = "https://github.com/itchyny/lightline.vim/archive/master.tar.gz"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "672h"
+[".vim/pack/plugins/start/vim-polyglot"]
+    type = "archive"
+    url = "https://github.com/sheerun/vim-polyglot/archive/master.tar.gz"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "672h"

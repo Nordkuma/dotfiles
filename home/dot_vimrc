@@ -1,0 +1,40 @@
+" General
+set autoread
+set hidden
+set title
+
+" Colorscheme
+packadd! onedark
+colorscheme onedark
+
+" Editor
+syntax on
+set termguicolors
+set noshowmode
+set showcmd
+set number
+set smartindent
+set showmatch
+set matchtime=1
+set virtualedit=onemore
+set wildmode=list:longest
+set clipboard=unnamed,unnamedplus
+set mouse=a
+
+" Tab
+set expandtab
+set tabstop=2
+set shiftwidth=2
+
+" Search
+set ignorecase
+set smartcase
+set incsearch
+set wrapscan
+set hlsearch
+
+" Statusline
+set laststatus=2
+let g:lightline = {
+    \ 'colorscheme': 'onedark',
+    \ }

@@ -1,0 +1,102 @@
+# zsh config
+export LANG=en_US.UTF-8
+export EDITOR=/usr/bin/vim
+export HISTFILE="$HOME/.zsh_history"
+export HISTSIZE=10000
+export SAVEHIST=10000
+export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+{{- if eq .chezmoi.os "darwin" }}
+export FPATH="$(brew --prefix)/share/zsh/site-functions:$FPATH"
+{{- end }}
+
+autoload -Uz compinit; compinit
+
+setopt append_history
+setopt auto_param_keys
+setopt correct
+setopt hist_expand
+setopt hist_ignore_all_dups
+setopt hist_ignore_dups
+setopt hist_reduce_blanks
+setopt hist_save_no_dups
+setopt inc_append_history
+setopt list_types
+setopt no_beep
+setopt prompt_subst
+setopt share_history
+
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' completer _complete _approximate
+zstyle ':completion:*:default' menu select=1
+zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
+
+# zsh hook
+export FPATH="$HOME/.zsh/hook:$FPATH"
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd add_newline
+
+# zsh plugin
+source "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+# fzf
+export FZF_DEFAULT_OPTS='--reverse'
+export FZF_TMUX=1
+export FZF_TMUX_OPTS='-p 50%'
+{{- if eq .chezmoi.os "darwin" }}
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+{{- else }}
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh
+{{- end }}
+
+# starship
+export STARSHIP_CONFIG="$HOME/.zsh/starship/starship.toml"
+eval "$(starship init zsh)"
+
+# sudo
+alias sudo='sudo '
+
+# ls
+{{- if eq .chezmoi.os "darwin" }}
+alias ls='ls -FG'
+{{- else }}
+alias ls='ls -F --color=auto --group-directories-first'
+{{- end }}
+alias ll='ls -l'
+alias la='ls -A'
+alias lla='ls -lA'
+
+{{  if eq .chezmoi.os "linux" -}}
+{{-   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
+# open
+function open() {
+    if [ $# != 1 ]; then
+        #explorer.exe .
+        files.exe .
+    else
+        if [ -e $1 ]; then
+            cmd.exe /c start $(wslpath -w $1) 2> /dev/null
+        else
+            echo "open: $1 : No such file or directory"
+        fi
+    fi
+}
+{{-   end -}}
+{{- end }}
+
+{{  if eq .chezmoi.os "linux" -}}
+# pbcopy and pbpaste
+{{-   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+alias pbcopy='tee <&0 | clip.exe'
+alias pbpaste="powershell.exe Get-Clipboard | sed 's/\r$//' | sed -z '$ s/\n$//'"
+{{-   else }}
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+{{-   end }}
+{{- end }}
+
+{{  if eq .chezmoi.os "darwin" -}}
+# tailscale
+alias tailscale='/Applications/Tailscale.app/Contents/MacOS/Tailscale'
+{{- end }}

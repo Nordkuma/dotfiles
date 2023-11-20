@@ -1,0 +1,7 @@
+[user]
+	name = srkm
+	email = 82438356+srkm1a1@users.noreply.github.com
+[init]
+	defaultBranch = main
+[core]
+	editor = vim
