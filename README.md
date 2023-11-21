@@ -29,10 +29,10 @@
    ```
 
 ## Optional
-### Alacritty (Linux)
+### Alacritty
 1. Install [Alacritty](https://github.com/alacritty/alacritty/blob/master/INSTALL.md) by package manager or build from source
 
-### Fonts (Linux)
+### Fonts
 1. Download [Roboto](https://fonts.google.com/specimen/Roboto), [Noto Sans JP](https://fonts.google.com/noto/specimen/Noto+Sans+JP), [HackGen](https://github.com/yuru7/HackGen/releases/latest)
 1. Unzip and install with GUI
 
