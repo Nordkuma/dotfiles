@@ -41,23 +41,23 @@
    ```bash
    mkdir ~/.ssh
    cd ~/.ssh
-   ssh-keygen -t ed25519 -f github_ed25519
-   cat ~/.ssh/github_ed25519.pub
+   ssh-keygen -t ed25519 -f id_github_ed25519
+   cat ~/.ssh/id_github_ed25519.pub
    ```
 1. Add SSH key to GitHub [SSH and GPG keys](https://github.com/settings/keys)
-1. Edit `~/.ssh/config`
+1. Edit `~/.ssh/config` and add following lines:
    ```bash
    Host github.com
      HostName github.com
      User git
-     IdentityFile ~/.ssh/github_ed25519
+     IdentityFile ~/.ssh/id_github_ed25519
    ```
 1. Confirm access to GitHub
    ```bash
    ssh -T git@github.com
    ```
 
-### TailScale
+### Tailscale
 1. Install [Tailscale](https://tailscale.com/download/) with command line or Mac App Store
 1. Start Tailscale
    ```bash
