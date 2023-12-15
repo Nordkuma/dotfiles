@@ -69,7 +69,7 @@ alias la='ls -A'
 alias lla='ls -lA'
 
 {{  if eq .chezmoi.os "linux" -}}
-{{-   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
+{{-   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
 # open
 function open() {
     if [ $# != 1 ]; then
@@ -83,7 +83,9 @@ function open() {
         fi
     fi
 }
-{{-   end -}}
+{{-   else }}
+alias open='xdg-open'
+{{-   end }}
 {{- end }}
 
 {{  if eq .chezmoi.os "linux" -}}
