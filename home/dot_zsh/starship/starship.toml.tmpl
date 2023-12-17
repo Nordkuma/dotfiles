@@ -8,9 +8,21 @@ add_newline = false
 scan_timeout = 50
 command_timeout = 2000
 
-palette = 'srkm'
+{{- if eq .chezmoi.os "linux" }}
+palette = 'linux'
+{{- else }}
+palette = 'macos'
+{{- end }}
 
-[palettes.srkm]
+[palettes.linux]
+_name_fg = '236'
+_name_bg = '190'
+_dir_fg = '252'
+_dir_bg = '237'
+_git_fg = '75'
+_git_bg = '237'
+
+[palettes.macos]
 _name_fg = '236'
 _name_bg = '38'
 _dir_fg = '252'
