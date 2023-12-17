@@ -31,7 +31,11 @@ set -g status-left "#[fg=colour237,bg=black]"
 set -g status-right "#[fg=colour237,bg=black]"
 set -g status-justify right
 setw -g window-status-format "#[fg=colour252] #I #W "
+{{- if eq .chezmoi.os "linux" }}
+setw -g window-status-current-format "#[fg=colour190,bg=colour237]#{?client_prefix,#[fg=colour75],}#[bg=colour190,fg=colour237]#{?client_prefix,#[bg=colour75],}#I #W#[fg=colour190,bg=colour237]#{?client_prefix,#[fg=colour75],}"
+{{- else }}
 setw -g window-status-current-format "#[fg=colour38,bg=colour237]#{?client_prefix,#[fg=colour220],}#[bg=colour38,fg=colour237]#{?client_prefix,#[bg=colour220],}#I #W#[fg=colour38,bg=colour237]#{?client_prefix,#[fg=colour220],}"
+{{- end }}
 
 # Copy mode
 setw -g mode-keys vi
