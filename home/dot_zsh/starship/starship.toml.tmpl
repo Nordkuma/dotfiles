@@ -31,20 +31,18 @@ _git_fg = '220'
 _git_bg = '237'
 
 [username]
-format = '[](_name_bg)[$user﹫]($style)'
+format = '[](_name_bg)[$user]($style)'
 style_user = 'fg:_name_fg bg:_name_bg'
 show_always = true
 
 [hostname]
-format = '[$hostname]($style)[ ](fg:_name_bg bg:_dir_bg)'
+format = '[﹫$hostname]($style)'
 style = 'fg:_name_fg bg:_name_bg'
 ssh_only = false
 
 [directory]
-format = '[$path]($style)'
+format = '[ ](fg:_name_bg bg:_dir_bg)[$path]($style)'
 style = 'fg:_dir_fg bg:_dir_bg'
-read_only = ''
-read_only_style = 'fg:bold red bg:white'
 truncate_to_repo = true
 truncation_length = 8
 truncation_symbol = '…/'
