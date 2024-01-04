@@ -27,8 +27,8 @@ set -g pane-active-border-style "fg=colour244"
 
 # Status line
 setw -g status-style "fg=colour252,bg=colour237"
-set -g status-left "#[fg=colour237,bg=black]"
-set -g status-right "#[fg=colour237,bg=black]"
+set -g status-left "#[fg=colour237,bg=terminal]"
+set -g status-right "#[fg=colour237,bg=terminal]"
 set -g status-justify right
 setw -g window-status-format "#[fg=colour252] #I #W "
 {{- if eq .chezmoi.os "linux" }}
