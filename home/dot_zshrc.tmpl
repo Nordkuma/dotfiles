@@ -15,16 +15,14 @@ autoload -Uz compinit; compinit
 setopt append_history
 setopt auto_param_keys
 setopt correct
+setopt extended_history
 setopt hist_expand
 setopt hist_ignore_all_dups
-setopt hist_ignore_dups
 setopt hist_reduce_blanks
-setopt hist_save_no_dups
-setopt inc_append_history
+setopt inc_append_history_time
 setopt list_types
 setopt no_beep
 setopt prompt_subst
-setopt share_history
 
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' completer _complete _approximate
