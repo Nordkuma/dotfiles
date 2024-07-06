@@ -1,5 +1,5 @@
 # dotfiles
-## Requirements
+## Pre-installation
 ### Linux
 1. Install curl, git
    ```bash
@@ -28,7 +28,7 @@
    chezmoi init --apply https://github.com/srkm1a1/dotfiles.git
    ```
 
-## Post Installation (Optional)
+## Post-installation (optional)
 ### Alacritty
 1. Install [Alacritty](https://github.com/alacritty/alacritty/blob/master/INSTALL.md) by package manager or build from source
 
