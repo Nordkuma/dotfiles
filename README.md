@@ -28,7 +28,7 @@
    chezmoi init --apply https://github.com/srkm1a1/dotfiles.git
    ```
 
-## Optional
+## Post Installation (Optional)
 ### Alacritty
 1. Install [Alacritty](https://github.com/alacritty/alacritty/blob/master/INSTALL.md) by package manager or build from source
 
