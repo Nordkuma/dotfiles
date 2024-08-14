@@ -1,12 +1,10 @@
 [user]
-  name = srkm
-  email = 82438356+srkm1a1@users.noreply.github.com
-  signingkey = ~/.ssh/id_github_ed25519.pub
+  name = Nordkuma
+  email = nordkuma@proton.me
+  signignkey = 85F390ADE3991E1E
 [init]
   defaultBranch = main
 [core]
   editor = vim
 [commit]
   gpgsign = true
-[gpg]
-  format = ssh
