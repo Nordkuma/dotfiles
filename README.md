@@ -25,7 +25,7 @@
    ```
 1. Initialize chezmoi
    ```bash
-   chezmoi init --apply https://github.com/srkm1a1/dotfiles.git
+   chezmoi init --apply https://github.com/Nordkuma/dotfiles.git
    ```
 
 ## Post-installation (optional)
@@ -37,25 +37,36 @@
 
 ### Fonts
 1. Download [Roboto](https://fonts.google.com/specimen/Roboto), [Noto Sans JP](https://fonts.google.com/noto/specimen/Noto+Sans+JP), [HackGen](https://github.com/yuru7/HackGen/releases/latest)
-2. Unzip and install with GUI
+1. Unzip and install with GUI
 
-### GitHub
-1. Generate SSH key
+### GPG for SSH
+1. Generate GPG key
    ```bash
-   mkdir ~/.ssh
-   cd ~/.ssh
-   ssh-keygen -t ed25519 -f id_github_ed25519
-   cat ~/.ssh/id_github_ed25519.pub
+   gpg --full-generate-key --expert
    ```
-1. Add SSH key to GitHub [SSH and GPG keys](https://github.com/settings/keys)
-1. Edit `~/.ssh/config` and add following lines:
+   or import existing key
    ```bash
-   Host github.com
-     HostName github.com
-     User git
-     IdentityFile ~/.ssh/id_github_ed25519
+   gpg --import <keyfile>
+   gpg --edit-key <user-id>
+   gpg> trust
    ```
-1. Confirm access to GitHub
+1. Get the keygrip of authentication subkey
+   ```bash
+   gpg --list-keys --with-keygrip
+   ```
+1. Add the keygrip to `~/.gnupg/sshcontrol`
+   ```bash
+   echo <keygrip> >> ~/.gnupg/sshcontrol
+   ```
+1. Check if the key is added
+   ```bash
+   ssh-add -l
+   ```
+1. Export public key
+   ```bash
+   gpg --export-ssh-key <user-id>
+   ```
+1. Test SSH connection to GitHub
    ```bash
    ssh -T git@github.com
    ```
