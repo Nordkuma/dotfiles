@@ -1,8 +1,6 @@
 #!/bin/zsh
 
-local cmd="$(echo $1 | sed 's/ .*$//')"
-
-case "$cmd" in
-    ssh|scp|sftp|git|chezmoi) gpg-connect-agent updatestartuptty /bye >/dev/null ;;
-    *) ;;
+case ${1%% *} in
+    chezmoi | git | scp | sftp | ssh | ssh-* )
+        gpg-connect-agent updatestartuptty /bye >/dev/null ;;
 esac
