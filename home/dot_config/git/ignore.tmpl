@@ -1,7 +1,8 @@
-{{  if eq .chezmoi.os "darwin" -}}
+# VSCode config files
+.vscode/
+
+{{- if eq .chezmoi.os "darwin" }}
+
 # macOS metadata
 .DS_Store
 {{- end }}
-
-# VSCode config files
-.vscode/*

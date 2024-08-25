@@ -74,7 +74,8 @@ alias ll='ls -l'
 alias la='ls -A'
 alias lla='ls -lA'
 
-{{  if eq .chezmoi.os "linux" -}}
+{{- if eq .chezmoi.os "linux" }}
+
 # open
 {{-   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
 function open() {
@@ -94,7 +95,8 @@ alias open='xdg-open'
 {{-   end }}
 {{- end }}
 
-{{  if eq .chezmoi.os "linux" -}}
+{{- if eq .chezmoi.os "linux" }}
+
 # pbcopy and pbpaste
 {{-   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
 alias pbcopy='tee <&0 | clip.exe'
@@ -105,7 +107,8 @@ alias pbpaste='xclip -selection clipboard -o'
 {{-   end }}
 {{- end }}
 
-{{  if eq .chezmoi.os "darwin" -}}
+{{- if eq .chezmoi.os "darwin" }}
+
 # tailscale
 alias tailscale='/Applications/Tailscale.app/Contents/MacOS/Tailscale'
 {{- end }}
