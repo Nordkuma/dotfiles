@@ -107,6 +107,9 @@ alias pbpaste='xclip -selection clipboard -o'
 {{-   end }}
 {{- end }}
 
+# ssh-tmux
+alias ssh-tmux='(){ssh -t "$1" tmux new-session -A -s main}'
+
 {{- if eq .chezmoi.os "darwin" }}
 
 # tailscale
