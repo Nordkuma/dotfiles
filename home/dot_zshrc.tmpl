@@ -32,7 +32,7 @@ zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/s
 # zsh hook
 export FPATH="$HOME/.zsh/hook:$FPATH"
 autoload -Uz add-zsh-hook
-add-zsh-hook preexec update_gpg_tty
+#add-zsh-hook preexec update_gpg_tty
 add-zsh-hook precmd add_newline
 
 # zsh plugin
