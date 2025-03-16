@@ -33,7 +33,7 @@ blinking = "On"
 TERM = "xterm-256color"
 
 [font]
-size = 13.0
+size = 15.0
 
 [font.bold]
 family = "HackGen Console NF"
