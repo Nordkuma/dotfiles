@@ -80,8 +80,7 @@ alias lla='ls -lA'
 {{-   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
 function open() {
     if [ $# != 1 ]; then
-        #explorer.exe .
-        files.exe .
+        cmd.exe /c start $(wslpath -w $(pwd)) 2> /dev/null
     else
         if [ -e $1 ]; then
             cmd.exe /c start $(wslpath -w $1) 2> /dev/null
