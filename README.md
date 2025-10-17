@@ -13,7 +13,7 @@
    ```shell
    xcode-select --install
    ```
-1. Install [Homebrew](https://brew.sh/) with `.pkg` installer or command line
+1. Install [Homebrew](https://brew.sh/) with `.pkg` installer or command
    ```shell
    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
    ```
@@ -36,11 +36,11 @@
 1. Install [Alacritty](https://github.com/alacritty/alacritty/blob/master/INSTALL.md) by package manager or build from source
 
 ### Docker
-1. Install [Docker Engine](https://docs.docker.com/engine/install/) depending on your platform
+1. Install [Docker Engine](https://docs.docker.com/engine/install/)
 
 ### Fonts
-1. Download [Roboto](https://fonts.google.com/specimen/Roboto), [Noto Sans JP](https://fonts.google.com/noto/specimen/Noto+Sans+JP), [HackGen](https://github.com/yuru7/HackGen/releases/latest)
-1. Unzip and install with GUI
+1. Download [HackGen](https://github.com/yuru7/HackGen/releases/latest), [Roboto](https://fonts.google.com/specimen/Roboto), [Noto Sans JP](https://fonts.google.com/noto/specimen/Noto+Sans+JP)
+1. Unzip and install
 
 ### GPG for SSH
 1. Generate GPG key
@@ -74,12 +74,13 @@
    ssh -T git@github.com
    ```
 
-### Ruff, uv
-1. Install [Ruff](https://docs.astral.sh/ruff/installation/), [uv](https://docs.astral.sh/uv/getting-started/installation/) depending on your platform
+### Python
+1. Install [uv](https://docs.astral.sh/uv/getting-started/installation/)
+1. Install [Ruff](https://docs.astral.sh/ruff/installation/), [ty](https://docs.astral.sh/ty/installation/) with uv
 
 ### Tailscale
-1. Install [Tailscale](https://tailscale.com/download/) with command line or Mac App Store
-1. Start Tailscale
+1. Install [Tailscale](https://tailscale.com/download/) with command or from Mac App Store
+1. Start Tailscale without using tailnet's DNS
    ```shell
    sudo tailscale up --accept-dns=false
    ```
