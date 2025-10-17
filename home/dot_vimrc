@@ -1,40 +1,69 @@
 " General
 set autoread
+set clipboard=unnamed,unnamedplus
 set hidden
+set nobackup
+set noswapfile
 set title
+filetype plugin indent on
+syntax on
 
-" Colorscheme
+" Color scheme
 packadd! onedark
 colorscheme onedark
 
-" Editor
-syntax on
-set termguicolors
+" Appearance
+set cursorline
+set list
+set listchars=tab:>-,trail:-,extends:>,precedes:<,nbsp:%
 set noshowmode
-set showcmd
 set number
-set smartindent
+set scrolloff=8
+set showcmd
 set showmatch
-set matchtime=1
-set virtualedit=onemore
-set wildmode=list:longest
-set clipboard=unnamed,unnamedplus
+set termguicolors
+set visualbell
+if has('vim_starting')
+    let &t_SI = "\e[6 q"
+    let &t_EI = "\e[2 q"
+    let &t_SR = "\e[4 q"
+    autocmd VimLeave * silent !echo -ne "\e[1 q"
+endif
+
+" Editor
+set backspace=indent,eol,start
 set mouse=a
+set smartindent
+set virtualedit=onemore
+set whichwrap=b,s,h,l,<,>,[,]
+set wildmode=list:longest
+noremap <Left> 0
+noremap <Right> $
+nnoremap x "_x
+nnoremap s "_s
+inoremap ( ()<Left>
+inoremap { {}<Left>
+inoremap [ []<Left>
+inoremap " ""<Left>
+inoremap ' ''<Left>
 
 " Tab
 set expandtab
-set tabstop=2
-set shiftwidth=2
+set shiftwidth=4
+set smarttab
+set softtabstop=4
+set tabstop=4
+autocmd FileType markdown setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
 " Search
-set ignorecase
-set smartcase
-set incsearch
-set wrapscan
 set hlsearch
+set ignorecase
+set incsearch
+set smartcase
+set wrapscan
+nnoremap * :let @/ = '\<' . expand('<cword>') . '\>'<CR>:set hlsearch<CR>
+nnoremap <Esc> :nohlsearch<CR>
 
-" Statusline
+" Status line
 set laststatus=2
-let g:lightline = {
-    \ 'colorscheme': 'onedark',
-    \ }
+let g:lightline = {'colorscheme': 'onedark'}
