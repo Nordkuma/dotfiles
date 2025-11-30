@@ -22,7 +22,6 @@ set scrolloff=8
 set showcmd
 set showmatch
 set termguicolors
-set visualbell
 if has('vim_starting')
     let &t_SI = "\e[6 q"
     let &t_EI = "\e[2 q"
@@ -41,11 +40,6 @@ noremap <Left> 0
 noremap <Right> $
 nnoremap x "_x
 nnoremap s "_s
-inoremap ( ()<Left>
-inoremap { {}<Left>
-inoremap [ []<Left>
-inoremap " ""<Left>
-inoremap ' ''<Left>
 
 " Tab
 set expandtab
@@ -62,7 +56,7 @@ set incsearch
 set smartcase
 set wrapscan
 nnoremap * :let @/ = '\<' . expand('<cword>') . '\>'<CR>:set hlsearch<CR>
-nnoremap <Esc> :nohlsearch<CR>
+nnoremap <Space> :nohlsearch<CR>
 
 " Status line
 set laststatus=2
