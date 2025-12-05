@@ -27,7 +27,12 @@ set -g pane-active-border-style "fg=colour244"
 
 # Status line
 setw -g status-style "fg=colour252,bg=colour237"
-set -g status-left "#[fg=colour237,bg=terminal]"
+set -g status-left-length 40
+{{- if eq .chezmoi.os "linux" }}
+set -g status-left "#[fg=colour237,bg=terminal]#[fg=colour148,bg=colour237]#[bg=colour148,fg=colour237]#h#[fg=colour148,bg=colour237]"
+{{- else }}
+set -g status-left "#[fg=colour237,bg=terminal]#[fg=colour38,bg=colour237]#[bg=colour38,fg=colour237]#h#[fg=colour38,bg=colour237]"
+{{- end }}
 set -g status-right "#[fg=colour237,bg=terminal]"
 set -g status-justify right
 setw -g window-status-format "#[fg=colour252] #I #W "
