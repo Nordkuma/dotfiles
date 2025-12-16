@@ -56,7 +56,7 @@ set incsearch
 set smartcase
 set wrapscan
 nnoremap * :let @/ = '\<' . expand('<cword>') . '\>'<CR>:set hlsearch<CR>
-nnoremap <Space> :nohlsearch<CR>
+nnoremap <Esc><Esc> :nohlsearch<CR>
 
 " Status line
 set laststatus=2
