@@ -4,7 +4,7 @@
 1. Install curl, git
    ```shell
    # Debian
-   sudo apt update && sudo apt upgrade
+   sudo apt update
    sudo apt install curl git
    ```
 
@@ -13,17 +13,16 @@
    ```shell
    xcode-select --install
    ```
-1. Install [Homebrew](https://brew.sh/) with `.pkg` installer or command
+1. Install [Homebrew](https://brew.sh/) with installer or command
    ```shell
    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
    ```
 
 ## Installation
-1. Install [chezmoi](https://www.chezmoi.io/)
+1. Install [chezmoi](https://www.chezmoi.io/install/) with command or Homebrew
    ```shell
-   # Linux
    sudo sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
-   # macOS
+   # or
    brew install chezmoi
    ```
 1. Initialize chezmoi
@@ -33,7 +32,10 @@
 
 ## Post-installation (optional)
 ### Alacritty
-1. Install [Alacritty](https://github.com/alacritty/alacritty/blob/master/INSTALL.md) by package manager or build from source
+1. Install [Alacritty](https://github.com/alacritty/alacritty/blob/master/INSTALL.md) by building from source or with Homebrew
+   ```shell
+   brew install alacritty
+   ```
 
 ### Docker
 1. Install [Docker Engine](https://docs.docker.com/engine/install/)
@@ -74,12 +76,58 @@
    ssh -T git@github.com
    ```
 
+### Neovim
+1. Install [Neovim](https://neovim.io/doc/install/) with Homebrew
+   ```shell
+   brew install neovim
+   ```
+   or by downloading AppImage
+   ```shell
+   mkdir ~/AppImage
+   cd ~/AppImage
+   curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
+   chmod u+x nvim-linux-x86_64.appimage
+   sudo ln -s ~/AppImage/nvim-linux-x86_64.appimage /usr/bin/nvim
+   ```
+1. Install [Tree-sitter CLI](https://github.com/tree-sitter/tree-sitter/blob/master/crates/cli/README.md), [ripgrep](https://github.com/BurntSushi/ripgrep) with Cargo
+   ```shell
+   cargo install --locked tree-sitter-cli
+   cargo install ripgrep
+   ```
+1. Install [macime](https://github.com/riodelphino/macime) for macOS or [zenhan](https://github.com/iuchim/zenhan) for WSL manually
+1. Launch Neovim and install Tree-sitter parsers
+   ```shell
+   nvim
+   :TSInstall <language>
+   ```
+
 ### Python
 1. Install [uv](https://docs.astral.sh/uv/getting-started/installation/)
+   ```shell
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+   ```
 1. Install [Ruff](https://docs.astral.sh/ruff/installation/), [ty](https://docs.astral.sh/ty/installation/) with uv
+   ```shell
+   uv tool install ruff@latest
+   uv tool install ty@latest
+   ```
+
+### Rust
+1. Install [Rust](https://rust-lang.org/tools/install/)
+   ```shell
+   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+   ```
+1. Install build tools
+   ```shell
+   # Debian
+   sudo apt install build-essential clang
+   ```
 
 ### Tailscale
-1. Install [Tailscale](https://tailscale.com/download/) with command or from Mac App Store
+1. Install [Tailscale](https://tailscale.com/download/) from App Store or with command
+   ```shell
+   curl -fsSL https://tailscale.com/install.sh | sh
+   ```
 1. Start Tailscale without using tailnet's DNS
    ```shell
    sudo tailscale up --accept-dns=false
