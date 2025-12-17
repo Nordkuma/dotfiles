@@ -106,6 +106,9 @@ alias pbpaste='xclip -selection clipboard -o'
 {{-   end }}
 {{- end }}
 
+# cd-git-root
+alias cd-git-root='cd $(git rev-parse --show-toplevel)'
+
 # ssh-tmux
 alias ssh-tmux='(){ssh -t "$1" tmux new-session -A -s main}'
 
