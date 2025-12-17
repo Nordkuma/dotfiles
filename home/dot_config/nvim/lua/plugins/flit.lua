@@ -14,7 +14,8 @@ return {
         opts = {
             labeled_modes = '',
             clever_repeat = true,
-            multiline = true
-        }
-    }
+            multiline = true,
+            opts = { case_sensitive = false },
+        },
+    },
 }

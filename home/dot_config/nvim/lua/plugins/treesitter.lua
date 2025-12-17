@@ -12,16 +12,16 @@ if (not vim.g.vscode) then
                         pcall(vim.treesitter.start)
                     end,
                 })
-            end
+            end,
         },
         {
             'https://github.com/nvim-treesitter/nvim-treesitter-context.git',
             event = 'FileType',
             opts = {
                 enable = true,
-                mode = 'topline'
-            }
-        }
+                mode = 'topline',
+            },
+        },
     }
 else
     return {}
