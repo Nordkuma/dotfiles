@@ -83,11 +83,17 @@
    ```
    or by downloading AppImage
    ```shell
-   mkdir ~/AppImage
-   cd ~/AppImage
+   # x86
    curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
-   chmod u+x nvim-linux-x86_64.appimage
-   sudo ln -s ~/AppImage/nvim-linux-x86_64.appimage /usr/bin/nvim
+   chmod +x nvim-linux-x86_64.appimage
+   sudo mv nvim-linux-x86_64.appimage /usr/local/bin/nvim
+
+   # ARM
+   curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-arm64.appimage
+   chmod +x nvim-linux-arm64.appimage
+   sudo mv nvim-linux-arm64.appimage /usr/local/bin/nvim
+
+   sudo chown root:root /usr/local/bin/nvim
    ```
 1. Install [Tree-sitter CLI](https://github.com/tree-sitter/tree-sitter/blob/master/crates/cli/README.md), [ripgrep](https://github.com/BurntSushi/ripgrep) with Cargo
    ```shell
