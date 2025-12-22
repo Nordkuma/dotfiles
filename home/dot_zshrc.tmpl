@@ -7,9 +7,9 @@ export HISTSIZE=10000
 export SAVEHIST=10000
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 {{- if eq .chezmoi.os "darwin" }}
-export FPATH="$(brew --prefix)/share/zsh/site-functions:$FPATH"
+export FPATH="$HOME/.zsh/completions:$(brew --prefix)/share/zsh/site-functions:$FPATH"
 {{- else }}
-export FPATH="$HOME/.zsh/completion:$FPATH"
+export FPATH="$HOME/.zsh/completions:$FPATH"
 {{- end }}
 
 autoload -Uz compinit; compinit
