@@ -95,10 +95,9 @@
 
    sudo chown root:root /usr/local/bin/nvim
    ```
-1. Install [Tree-sitter CLI](https://github.com/tree-sitter/tree-sitter/blob/master/crates/cli/README.md), [ripgrep](https://github.com/BurntSushi/ripgrep) with Cargo
+1. Install [Tree-sitter CLI](https://github.com/tree-sitter/tree-sitter/blob/master/crates/cli/README.md) with Cargo
    ```shell
    cargo install --locked tree-sitter-cli
-   cargo install ripgrep
    ```
 1. Install [macime](https://github.com/riodelphino/macime) for macOS or [zenhan](https://github.com/iuchim/zenhan) for WSL manually
 1. Launch Neovim and install Tree-sitter parsers
@@ -123,10 +122,19 @@
    ```shell
    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
    ```
+1. Generate zsh completions
+   ```shell
+   rustup completions zsh > ~/.zsh/completions/_rustup
+   ln -s ~/.rustup/toolchains/{toolchain-name}/share/zsh/site-functions/_cargo ~/.zsh/completions/_cargo
+   ```
 1. Install build tools
    ```shell
    # Debian
    sudo apt install build-essential clang
+   ```
+1. Install [cargo-update](https://github.com/nabijaczleweli/cargo-update) (optional)
+   ```shell
+   cargo install cargo-update
    ```
 
 ### Tailscale
