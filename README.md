@@ -124,8 +124,8 @@
    ```
 1. Generate zsh completions
    ```shell
-   rustup completions zsh > ~/.zsh/completions/_rustup
-   ln -s ~/.rustup/toolchains/{toolchain-name}/share/zsh/site-functions/_cargo ~/.zsh/completions/_cargo
+   rustup completions zsh > ~/.zsh/completion/_rustup
+   ln -s ~/.rustup/toolchains/{toolchain-name}/share/zsh/site-functions/_cargo ~/.zsh/completion/_cargo
    ```
 1. Install build tools
    ```shell
