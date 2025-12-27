@@ -13,17 +13,21 @@
    ```shell
    xcode-select --install
    ```
-1. Install [Homebrew](https://brew.sh/) with installer or command
+1. Install [Homebrew](https://brew.sh/) with installer or script
    ```shell
    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
    ```
 
 ## Installation
-1. Install [chezmoi](https://www.chezmoi.io/install/) with command or Homebrew
+1. Install [chezmoi](https://www.chezmoi.io/install/) with script or Homebrew
    ```shell
    sudo sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
    # or
    brew install chezmoi
+   ```
+1. Generate zsh completions (only needed when installed with script)
+   ```shell
+   chezmoi completion zsh > ~/.zsh/completion/_chezmoi
    ```
 1. Initialize chezmoi
    ```shell
@@ -111,6 +115,11 @@
    ```shell
    curl -LsSf https://astral.sh/uv/install.sh | sh
    ```
+1. Generate zsh completions
+   ```shell
+   uv generate-shell-completion zsh > ~/.zsh/completion/_uv
+   uvx --generate-shell-completion zsh > ~/.zsh/completion/_uvx
+   ```
 1. Install [Ruff](https://docs.astral.sh/ruff/installation/), [ty](https://docs.astral.sh/ty/installation/) with uv
    ```shell
    uv tool install ruff@latest
@@ -138,7 +147,7 @@
    ```
 
 ### Tailscale
-1. Install [Tailscale](https://tailscale.com/download/) from App Store or with command
+1. Install [Tailscale](https://tailscale.com/download/) from App Store or with script
    ```shell
    curl -fsSL https://tailscale.com/install.sh | sh
    ```
