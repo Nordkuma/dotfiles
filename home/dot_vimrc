@@ -36,10 +36,14 @@ set smartindent
 set virtualedit=onemore
 set whichwrap=b,s,h,l,<,>,[,]
 set wildmode=list:longest
+nnoremap s "_s
+nnoremap x "_x
 noremap <Left> 0
 noremap <Right> $
-nnoremap x "_x
-nnoremap s "_s
+inoremap <C-@> <Esc>
+nnoremap <C-@> <Esc>
+vnoremap <C-@> <Esc>
+cnoremap <C-@> <Esc>
 
 " Tab
 set expandtab
