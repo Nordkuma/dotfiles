@@ -108,6 +108,9 @@ alias cd-git-root='cd $(git rev-parse --show-toplevel)'
 # ssh-tmux
 alias ssh-tmux='(){ssh -t "$1" tmux new-session -A -s main}'
 
+# vi
+alias vi='nvim'
+
 {{- if eq .chezmoi.os "darwin" }}
 
 # tailscale
