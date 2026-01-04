@@ -35,14 +35,8 @@
    ```
 
 ## Post-installation (optional)
-### Alacritty
-1. Install [Alacritty](https://github.com/alacritty/alacritty/blob/master/INSTALL.md) by building from source or with Homebrew
-   ```shell
-   brew install alacritty
-   ```
-
-### Docker
-1. Install [Docker Engine](https://docs.docker.com/engine/install/)
+### Container Engine
+1. Install [Docker Engine](https://docs.docker.com/engine/install/) or [Podman](https://podman.io/docs/installation)
 
 ### Fonts
 1. Download [HackGen](https://github.com/yuru7/HackGen/releases/latest), [Roboto](https://fonts.google.com/specimen/Roboto), [Noto Sans JP](https://fonts.google.com/noto/specimen/Noto+Sans+JP)
@@ -155,3 +149,7 @@
    ```shell
    sudo tailscale up --accept-dns=false
    ```
+
+### Terminal Emulator
+1. Install [Alacritty](https://github.com/alacritty/alacritty/blob/master/INSTALL.md) or [Ghostty](https://ghostty.org/docs/install/binary)
+
