@@ -8,6 +8,6 @@ curl -sS https://starship.rs/install.sh | sh
 chsh -s $(which zsh)
 {{- else if eq .chezmoi.os "darwin" }}
 brew update
-brew install alacritty font-hackgen font-hackgen-nerd fzf gnupg htop neovim pinentry-mac starship tmux
+brew install font-hackgen font-hackgen-nerd fzf gnupg htop neovim pinentry-mac starship tmux
 $(brew --prefix)/opt/fzf/install
 {{- end }}
