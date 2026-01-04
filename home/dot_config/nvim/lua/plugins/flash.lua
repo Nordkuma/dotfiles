@@ -1,7 +1,6 @@
 return {
     'https://github.com/folke/flash.nvim.git',
     event = 'VeryLazy',
-    ---@type Flash.Config
     keys = {
         {
             's',
