@@ -25,10 +25,6 @@
    # or
    brew install chezmoi
    ```
-1. Generate zsh completions (only needed when installed with script)
-   ```shell
-   chezmoi completion zsh > ~/.zsh/completion/_chezmoi
-   ```
 1. Initialize chezmoi
    ```shell
    chezmoi init --apply https://github.com/Nordkuma/dotfiles.git
