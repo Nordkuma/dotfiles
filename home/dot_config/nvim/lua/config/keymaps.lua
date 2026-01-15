@@ -5,7 +5,7 @@ local map = vim.keymap.set
 
 map('', '<Down>', '}')
 map('', '<Left>', '^')
-map('', '<Right>', 'g_')
+map('', '<Right>', '$')
 map('', '<Up>', '{')
 
 map({ 'n', 'i', 'v', 'c' }, '<C-Space>', '<Esc>', { silent = true })
