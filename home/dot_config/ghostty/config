@@ -30,7 +30,7 @@ cursor-style-blink = true
 copy-on-select = true
 
 # Window
-title = " "
+title = "Ghostty"
 maximize = true
 confirm-close-surface = false
 quit-after-last-window-closed = true
