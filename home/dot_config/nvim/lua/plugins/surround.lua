@@ -2,12 +2,12 @@ return {
     'https://github.com/nvim-mini/mini.surround.git',
     opts = {
         mappings = {
-            add = 'gsa',
-            delete = 'gsd',
-            find = 'gsf',
-            find_left = 'gsF',
-            highlight = 'gsh',
-            replace = 'gsr',
+            add = '<leader>sa',
+            delete = '<leader>sd',
+            find = '<leader>sf',
+            find_left = '<leader>sF',
+            highlight = '<leader>sh',
+            replace = '<leader>sr',
         },
     },
 }
