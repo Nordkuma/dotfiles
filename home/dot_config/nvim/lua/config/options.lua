@@ -2,13 +2,16 @@ local opt = vim.opt
 
 -- General
 opt.autoread = true
+if (not vim.g.vscode) then
+    opt.backup = false
+end
 opt.clipboard = { 'unnamed', 'unnamedplus' }
 if (not vim.g.vscode) then
     opt.hidden = true
-    opt.backup = false
     opt.swapfile = false
     opt.title = true
 end
+opt.ttimeoutlen = 10
 
 -- Appearance
 if (not vim.g.vscode) then
