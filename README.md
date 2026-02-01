@@ -89,14 +89,14 @@
 
    sudo chown root:root /usr/local/bin/nvim
    ```
-1. Install [Tree-sitter CLI](https://github.com/tree-sitter/tree-sitter/blob/master/crates/cli/README.md) with Cargo
+1. Install [Tree-sitter CLI](https://github.com/tree-sitter/tree-sitter/blob/master/crates/cli/README.md), [ripgrep](https://github.com/BurntSushi/ripgrep) with Cargo
    ```shell
    cargo install --locked tree-sitter-cli
+   cargo install ripgrep
    ```
-1. Install [macime](https://github.com/riodelphino/macime) for macOS or [zenhan](https://github.com/iuchim/zenhan) for WSL manually
+1. Install [macime](https://github.com/riodelphino/macime) for macOS or [zenhan](https://github.com/iuchim/zenhan) for WSL
 1. Launch Neovim and install Tree-sitter parsers
-   ```shell
-   nvim
+   ```vim
    :TSInstall <language>
    ```
 
@@ -148,4 +148,3 @@
 
 ### Terminal Emulator
 1. Install [Alacritty](https://github.com/alacritty/alacritty/blob/master/INSTALL.md) or [Ghostty](https://ghostty.org/docs/install/binary)
-
