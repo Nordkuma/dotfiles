@@ -59,6 +59,9 @@ unbind C-b
 set -g prefix C-q
 bind C-q send-prefix
 
+# Escape time
+set -g escape-time 10
+
 # Key bind
 bind c new-window -c "#{pane_current_path}"
 bind | split-window -h -c "#{pane_current_path}"
