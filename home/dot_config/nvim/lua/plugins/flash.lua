@@ -37,5 +37,16 @@ return {
         label = {
             uppercase = false,
         },
-    }
+        modes = {
+            char = {
+                config = function(opts)
+                    opts.autohide = opts.autohide or vim.fn.mode(true):find("no")
+                    opts.jump_labels = opts.jump_labels
+                        and vim.v.count == 0
+                        and vim.fn.reg_executing() == ""
+                        and vim.fn.reg_recording() == ""
+                end,
+            },
+        },
+    },
 }

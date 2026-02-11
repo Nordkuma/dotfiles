@@ -15,6 +15,7 @@ map('n', 'x', '"_x')
 map('n', '*', [[:let @/ = '\<' . expand('<cword>') . '\>'<CR>:set hlsearch<CR>]], { silent = true })
 map('n', '<Leader>l', ':nohlsearch<CR>', { silent = true })
 map('n', '<Leader>o', 'o<Esc>', { silent = true })
+map('n', '<Leader>O', 'O<Esc>', { silent = true })
 
 map('v', '<', '<gv')
 map('v', '>', '>gv')
