@@ -16,6 +16,14 @@ return {
     {
         'https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git',
         branch = 'main',
+        keys = {
+            { '<leader>af', mode = { 'x', 'o' } },
+            { '<leader>if', mode = { 'x', 'o' } },
+            { '<leader>ac', mode = { 'x', 'o' } },
+            { '<leader>ic', mode = { 'x', 'o' } },
+            { '<leader>a',  mode = 'n' },
+            { '<leader>A',  mode = 'n' },
+        },
         init = function()
             vim.g.no_plugin_maps = true
         end,
@@ -37,30 +45,6 @@ return {
             end)
             vim.keymap.set('n', '<leader>A', function()
                 require('nvim-treesitter-textobjects.swap').swap_previous '@parameter.inner'
-            end)
-            vim.keymap.set({ 'n', 'x', 'o' }, ']f', function()
-                require('nvim-treesitter-textobjects.move').goto_next_start('@function.outer', 'textobjects')
-            end)
-            vim.keymap.set({ 'n', 'x', 'o' }, ']F', function()
-                require('nvim-treesitter-textobjects.move').goto_next_end('@function.outer', 'textobjects')
-            end)
-            vim.keymap.set({ 'n', 'x', 'o' }, '[f', function()
-                require('nvim-treesitter-textobjects.move').goto_previous_start('@function.outer', 'textobjects')
-            end)
-            vim.keymap.set({ 'n', 'x', 'o' }, '[F', function()
-                require('nvim-treesitter-textobjects.move').goto_previous_end('@function.outer', 'textobjects')
-            end)
-            vim.keymap.set({ 'n', 'x', 'o' }, ']c', function()
-                require('nvim-treesitter-textobjects.move').goto_next_start('@class.outer', 'textobjects')
-            end)
-            vim.keymap.set({ 'n', 'x', 'o' }, ']C', function()
-                require('nvim-treesitter-textobjects.move').goto_next_end('@class.outer', 'textobjects')
-            end)
-            vim.keymap.set({ 'n', 'x', 'o' }, '[c', function()
-                require('nvim-treesitter-textobjects.move').goto_previous_start('@class.outer', 'textobjects')
-            end)
-            vim.keymap.set({ 'n', 'x', 'o' }, '[C', function()
-                require('nvim-treesitter-textobjects.move').goto_previous_end('@class.outer', 'textobjects')
             end)
         end,
     },

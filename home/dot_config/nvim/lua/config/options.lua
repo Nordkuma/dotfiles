@@ -12,6 +12,7 @@ if (not vim.g.vscode) then
     opt.title = true
 end
 opt.ttimeoutlen = 10
+opt.updatetime = 500
 
 -- Appearance
 if (not vim.g.vscode) then
