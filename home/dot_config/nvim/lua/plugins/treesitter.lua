@@ -17,12 +17,12 @@ return {
         'https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git',
         branch = 'main',
         keys = {
-            { '<leader>af', mode = { 'x', 'o' } },
-            { '<leader>if', mode = { 'x', 'o' } },
-            { '<leader>ac', mode = { 'x', 'o' } },
-            { '<leader>ic', mode = { 'x', 'o' } },
-            { '<leader>a',  mode = 'n' },
-            { '<leader>A',  mode = 'n' },
+            { 'af',        mode = { 'x', 'o' } },
+            { 'if',        mode = { 'x', 'o' } },
+            { 'ac',        mode = { 'x', 'o' } },
+            { 'ic',        mode = { 'x', 'o' } },
+            { '<leader>a', mode = 'n' },
+            { '<leader>A', mode = 'n' },
         },
         init = function()
             vim.g.no_plugin_maps = true
