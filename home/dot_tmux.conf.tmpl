@@ -1,6 +1,82 @@
+# Prefix key
+unbind C-b
+set -g prefix C-q
+bind C-q send-prefix
+
+# Key bind
+## Window
+bind C new-window -c "#{pane_current_path}"
+bind \\ split-window -h
+bind - split-window -v
+bind | split-window -h -c "#{pane_current_path}"
+bind _ split-window -v -c "#{pane_current_path}"
+## Pane
+bind e setw synchronize-panes \; display "Pane synchronization #{?synchronize-panes,enabled,disabled}"
+bind C-h select-layout even-horizontal
+bind C-v select-layout even-vertical
+bind C-t select-layout tiled
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+bind -r H resize-pane -L 1
+bind -r J resize-pane -D 1
+bind -r K resize-pane -U 1
+bind -r L resize-pane -R 1
+## Other
+bind r source ~/.tmux.conf \; display "Config reloaded"
+bind -T copy-mode-vi v send -X begin-selection
+
+# History
+set -g history-limit 100000
+
+# Time
+set -g escape-time 10
+set -g display-time 1500
+set -g repeat-time 750
+
 # True color
 set -g default-terminal "xterm-256color"
 set -ag terminal-overrides ",xterm-256color:RGB"
+
+# Window
+set -g renumber-windows on
+set -g base-index 1
+
+# Pane
+set -g pane-base-index 1
+set -g pane-border-lines heavy
+set -g pane-border-style "fg=colour237"
+set -g pane-active-border-style "fg=colour244,bold"
+
+# Status line
+set -g status-style "fg=colour252,bg=colour237"
+set -g status-left-length 40
+{{- if eq .chezmoi.os "linux" }}
+set -g status-left "#[fg=colour237,bg=terminal]#[fg=colour148,bg=colour237]#[bg=colour148,fg=colour237]#h#[fg=colour148,bg=colour237]"
+{{- else }}
+set -g status-left "#[fg=colour237,bg=terminal]#[fg=colour38,bg=colour237]#[bg=colour38,fg=colour237]#h#[fg=colour38,bg=colour237]"
+{{- end }}
+set -g status-right "#[fg=colour237,bg=terminal]"
+set -g status-justify right
+set -g window-status-format "#[fg=colour252] #I #W "
+{{- if eq .chezmoi.os "linux" }}
+set -g window-status-current-format "#[fg=colour148,bg=colour237]#{?client_prefix,#[fg=colour75],}#[bg=colour148,fg=colour237]#{?client_prefix,#[bg=colour75],}#I #W#[fg=colour148,bg=colour237]#{?client_prefix,#[fg=colour75],}"
+{{- else }}
+set -g window-status-current-format "#[fg=colour38,bg=colour237]#{?client_prefix,#[fg=colour220],}#[bg=colour38,fg=colour237]#{?client_prefix,#[bg=colour220],}#I #W#[fg=colour38,bg=colour237]#{?client_prefix,#[fg=colour220],}"
+{{- end }}
+
+# Copy mode
+set -g mode-keys vi
+{{- if eq .chezmoi.os "linux" }}
+{{-   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+set -s copy-command 'tee <&0 | clip.exe'
+{{-   else }}
+set -s copy-command 'xclip -selection clipboard'
+{{-   end }}
+{{- else if eq .chezmoi.os "darwin" }}
+set -s copy-command 'pbcopy'
+{{- end }}
 
 # Mouse
 set -g mouse on
@@ -16,66 +92,8 @@ bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "xc
 bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "pbcopy"
 {{- end }}
 
-# Index
-set -g renumber-windows on
-set -g base-index 1
-setw -g pane-base-index 1
-
-# Pane
-set -g pane-border-style "fg=colour237"
-set -g pane-active-border-style "fg=colour244"
-
-# Status line
-setw -g status-style "fg=colour252,bg=colour237"
-set -g status-left-length 40
-{{- if eq .chezmoi.os "linux" }}
-set -g status-left "#[fg=colour237,bg=terminal]#[fg=colour148,bg=colour237]#[bg=colour148,fg=colour237]#h#[fg=colour148,bg=colour237]"
-{{- else }}
-set -g status-left "#[fg=colour237,bg=terminal]#[fg=colour38,bg=colour237]#[bg=colour38,fg=colour237]#h#[fg=colour38,bg=colour237]"
-{{- end }}
-set -g status-right "#[fg=colour237,bg=terminal]"
-set -g status-justify right
-setw -g window-status-format "#[fg=colour252] #I #W "
-{{- if eq .chezmoi.os "linux" }}
-setw -g window-status-current-format "#[fg=colour148,bg=colour237]#{?client_prefix,#[fg=colour75],}#[bg=colour148,fg=colour237]#{?client_prefix,#[bg=colour75],}#I #W#[fg=colour148,bg=colour237]#{?client_prefix,#[fg=colour75],}"
-{{- else }}
-setw -g window-status-current-format "#[fg=colour38,bg=colour237]#{?client_prefix,#[fg=colour220],}#[bg=colour38,fg=colour237]#{?client_prefix,#[bg=colour220],}#I #W#[fg=colour38,bg=colour237]#{?client_prefix,#[fg=colour220],}"
-{{- end }}
-
-# Copy mode
-setw -g mode-keys vi
-{{- if eq .chezmoi.os "linux" }}
-{{-   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
-set -s copy-command 'tee <&0 | clip.exe'
-{{-   else }}
-set -s copy-command 'xclip -selection clipboard'
-{{-   end }}
-{{- else if eq .chezmoi.os "darwin" }}
-set -s copy-command 'pbcopy'
-{{- end }}
-
-# Prefix key
-unbind C-b
-set -g prefix C-q
-bind C-q send-prefix
-
-# Escape time
-set -g escape-time 10
-
-# Key bind
-bind c new-window -c "#{pane_current_path}"
-bind | split-window -h -c "#{pane_current_path}"
-bind - split-window -v -c "#{pane_current_path}"
-bind r source ~/.tmux.conf \; display "Reloaded!"
-bind -n S-left select-pane -L
-bind -n S-down select-pane -D
-bind -n S-up select-pane -U
-bind -n S-right select-pane -R
-
 # Plugin
 set -g @continuum-save-interval '60'
 set -g @continuum-restore 'on'
-
-# Load plugins
 run-shell ~/.tmux/plugins/tmux-resurrect/resurrect.tmux
 run-shell ~/.tmux/plugins/tmux-continuum/continuum.tmux
