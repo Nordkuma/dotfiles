@@ -5,20 +5,21 @@ bind C-q send-prefix
 
 # Key bind
 ## Window
+bind c new-window -c "~"
 bind C new-window -c "#{pane_current_path}"
-bind \\ split-window -h
-bind - split-window -v
-bind | split-window -h -c "#{pane_current_path}"
-bind _ split-window -v -c "#{pane_current_path}"
+bind '\' split-window -h -c "~"
+bind '|' split-window -h -c "#{pane_current_path}"
+bind '-' split-window -v -c "~"
+bind '_' split-window -v -c "#{pane_current_path}"
 ## Pane
-bind e setw synchronize-panes \; display "Pane synchronization #{?synchronize-panes,enabled,disabled}"
+bind e setw synchronize-panes \; display "Pane sync #{?synchronize-panes,enabled,disabled}"
 bind C-h select-layout even-horizontal
 bind C-v select-layout even-vertical
 bind C-t select-layout tiled
-bind h select-pane -L
-bind j select-pane -D
-bind k select-pane -U
-bind l select-pane -R
+bind -r h select-pane -L
+bind -r j select-pane -D
+bind -r k select-pane -U
+bind -r l select-pane -R
 bind -r H resize-pane -L 1
 bind -r J resize-pane -D 1
 bind -r K resize-pane -U 1
@@ -33,7 +34,7 @@ set -g history-limit 100000
 # Time
 set -g escape-time 10
 set -g display-time 1500
-set -g repeat-time 750
+set -g repeat-time 500
 
 # True color
 set -g default-terminal "xterm-256color"
