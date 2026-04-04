@@ -77,16 +77,15 @@
    ```
    or by downloading AppImage
    ```shell
-   # x86
-   curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
-   chmod +x nvim-linux-x86_64.appimage
-   sudo mv nvim-linux-x86_64.appimage /usr/local/bin/nvim
-
-   # ARM
-   curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-arm64.appimage
-   chmod +x nvim-linux-arm64.appimage
-   sudo mv nvim-linux-arm64.appimage /usr/local/bin/nvim
-
+   ARCH=$(uname -m)
+   case "$ARCH" in
+     x86_64)  FILE="nvim-linux-x86_64.appimage" ;;
+     aarch64) FILE="nvim-linux-arm64.appimage" ;;
+     *) echo "Unsupported architecture: $ARCH"; exit 1 ;;
+   esac
+   curl -LO "https://github.com/neovim/neovim/releases/latest/download/$FILE"
+   chmod +x "$FILE"
+   sudo mv "$FILE" /usr/local/bin/nvim
    sudo chown root:root /usr/local/bin/nvim
    ```
 1. Install [Tree-sitter CLI](https://github.com/tree-sitter/tree-sitter/blob/master/crates/cli/README.md), [ripgrep](https://github.com/BurntSushi/ripgrep) with Cargo
@@ -94,7 +93,7 @@
    cargo install --locked tree-sitter-cli
    cargo install ripgrep
    ```
-1. Install [macime](https://github.com/riodelphino/macime) for macOS or [zenhan](https://github.com/iuchim/zenhan) for WSL
+1. Install [mac-ime](https://github.com/Nordkuma/mac-ime) for macOS or [zenhan](https://github.com/iuchim/zenhan) for WSL
 1. Launch Neovim and install Tree-sitter parsers
    ```vim
    :TSInstall <language>
