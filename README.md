@@ -93,7 +93,7 @@
    cargo install --locked tree-sitter-cli
    cargo install ripgrep
    ```
-1. Install [mac-ime](https://github.com/Nordkuma/mac-ime) for macOS or [zenhan](https://github.com/iuchim/zenhan) for WSL
+1. Install [mac-ime](https://github.com/Nordkuma/mac-ime) for macOS or [win-ime](https://github.com/Nordkuma/win-ime) for WSL
 1. Launch Neovim and install Tree-sitter parsers
    ```vim
    :TSInstall <language>
