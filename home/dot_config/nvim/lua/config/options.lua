@@ -2,11 +2,11 @@ local opt = vim.opt
 
 -- General
 opt.autoread = true
-if (not vim.g.vscode) then
+if not vim.g.vscode then
     opt.backup = false
 end
 opt.clipboard = { 'unnamed', 'unnamedplus' }
-if (not vim.g.vscode) then
+if not vim.g.vscode then
     opt.hidden = true
     opt.swapfile = false
     opt.title = true
@@ -15,7 +15,7 @@ opt.ttimeoutlen = 10
 opt.updatetime = 500
 
 -- Appearance
-if (not vim.g.vscode) then
+if not vim.g.vscode then
     opt.cursorline = true
     opt.list = true
     opt.listchars = { tab = '>-', trail = '-', extends = '>', precedes = '<', nbsp = '%' }
@@ -23,7 +23,7 @@ if (not vim.g.vscode) then
     opt.number = true
 end
 opt.scrolloff = 8
-if (not vim.g.vscode) then
+if not vim.g.vscode then
     opt.showcmd = true
     opt.showmatch = true
     opt.termguicolors = true
@@ -32,7 +32,7 @@ end
 
 -- Editor
 opt.backspace = { 'indent', 'eol', 'start' }
-if (not vim.g.vscode) then
+if not vim.g.vscode then
     opt.mouse = 'a'
     opt.smartindent = true
 end
@@ -41,7 +41,7 @@ opt.whichwrap = 'b,s,h,l,<,>,[,]'
 opt.wildmode = { 'list:longest' }
 
 -- Tab / Indent
-if (not vim.g.vscode) then
+if not vim.g.vscode then
     opt.expandtab = true
     opt.shiftwidth = 4
     opt.smarttab = true

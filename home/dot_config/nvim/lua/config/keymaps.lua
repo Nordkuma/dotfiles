@@ -12,15 +12,13 @@ map({ 'n', 'i', 'v', 'c' }, '<C-Space>', '<Esc>')
 
 map('n', 'c', '"_c')
 map('n', 'x', '"_x')
-map('n', '*', [[:let @/ = '\<' . expand('<cword>') . '\>'<CR>:set hlsearch<CR>]], { silent = true })
-if vim.fn.has('mac') == 1 and vim.fn.executable('ime') == 1 then
+map('n', '*', function()
+    vim.fn.setreg('/', [[\<]] .. vim.fn.expand('<cword>') .. [[\>]])
+    vim.opt.hlsearch = true
+end)
+if vim.fn.executable('ime') == 1 then
     map('n', '<Esc>', function()
         vim.fn.jobstart({ 'ime', 'off' })
-        return '<Esc>'
-    end, { expr = true })
-elseif vim.fn.has('wsl') == 1 and vim.fn.executable('zenhan') == 1 then
-    map('n', '<Esc>', function()
-        vim.fn.jobstart({ 'zenhan', '0' })
         return '<Esc>'
     end, { expr = true })
 end
