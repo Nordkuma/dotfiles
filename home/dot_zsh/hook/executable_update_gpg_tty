@@ -1,6 +1,0 @@
-#!/bin/zsh
-
-case ${1%% *} in
-    chezmoi | git | scp | sftp | ssh | ssh-* )
-        gpg-connect-agent updatestartuptty /bye >/dev/null ;;
-esac
