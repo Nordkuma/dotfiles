@@ -5,6 +5,8 @@ set hidden
 set nobackup
 set noswapfile
 set title
+set ttimeoutlen=10
+set updatetime=500
 filetype plugin indent on
 syntax on
 
@@ -30,20 +32,31 @@ if has('vim_starting')
 endif
 
 " Editor
+let mapleader = ' '
+let maplocalleader = '\'
 set backspace=indent,eol,start
 set mouse=a
 set smartindent
 set virtualedit=onemore
 set whichwrap=b,s,h,l,<,>,[,]
 set wildmode=list:longest
-nnoremap s "_s
-nnoremap x "_x
-noremap <Left> 0
+noremap <Down> }
+noremap <Up> {
+noremap <Left> ^
 noremap <Right> $
 inoremap <C-@> <Esc>
 nnoremap <C-@> <Esc>
 vnoremap <C-@> <Esc>
 cnoremap <C-@> <Esc>
+nnoremap c "_c
+nnoremap x "_x
+nnoremap <Leader>l <cmd>nohlsearch<CR>
+nnoremap <Leader>o o<Esc>
+nnoremap <Leader>O O<Esc>
+nnoremap <Leader>w <cmd>w<CR>
+nnoremap <Leader>x <cmd>x<CR>
+vnoremap < <gv
+vnoremap > >gv
 
 " Tab
 set expandtab
