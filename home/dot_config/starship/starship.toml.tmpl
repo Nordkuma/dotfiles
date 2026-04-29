@@ -1,60 +1,64 @@
 format = '''
-$username$hostname$directory$git_status$git_branch[](_git_bg)
+$username$hostname$directory$git_status$git_branch$cmd_duration[](sub_bg)
 $character
 '''
 
 add_newline = false
-
-scan_timeout = 50
 command_timeout = 2000
-
 {{- if eq .chezmoi.os "linux" }}
 palette = 'linux'
 {{- else }}
 palette = 'macos'
 {{- end }}
+scan_timeout = 50
 
 [palettes.linux]
-_name_fg = '236'
-_name_bg = '148'
-_dir_fg = '252'
-_dir_bg = '237'
-_git_fg = '75'
-_git_bg = '237'
+main_bg = '148'
+sub_bg = '237'
+name_fg = '236'
+dir_fg = '252'
+git_fg = '75'
+dur_fg = '141'
 
 [palettes.macos]
-_name_fg = '236'
-_name_bg = '38'
-_dir_fg = '252'
-_dir_bg = '237'
-_git_fg = '220'
-_git_bg = '237'
+main_bg = '38'
+sub_bg = '237'
+name_fg = '236'
+dir_fg = '252'
+git_fg = '220'
+dur_fg = '114'
 
 [username]
-format = '[](_name_bg)[$user]($style)'
-style_user = 'fg:_name_fg bg:_name_bg'
+format = '[](main_bg)[$user]($style)'
+style_user = 'fg:name_fg bg:main_bg'
 show_always = true
 
 [hostname]
-format = '[﹫$hostname]($style)'
-style = 'fg:_name_fg bg:_name_bg'
+format = '[﹫$hostname]($style)[](fg:main_bg bg:sub_bg)'
+style = 'fg:name_fg bg:main_bg'
 ssh_only = false
 
 [directory]
-format = '[ ](fg:_name_bg bg:_dir_bg)[$path]($style)'
-style = 'fg:_dir_fg bg:_dir_bg'
+format = '[ $path]($style)'
+style = 'fg:dir_fg bg:sub_bg'
 truncate_to_repo = true
 truncation_length = 8
 truncation_symbol = '…/'
 
 [git_status]
 format = '[ ]($style)([$all_status$ahead_behind]($style))'
-style = 'fg:_git_fg bg:_git_bg'
+style = 'fg:git_fg bg:sub_bg'
 deleted = ''
 
 [git_branch]
 format = '[ $branch(:$remote_branch)]($style)'
-style = 'fg:_git_fg bg:_git_bg'
+style = 'fg:git_fg bg:sub_bg'
+
+[cmd_duration]
+min_time = 250
+show_milliseconds = true
+format = '[ 󰔛 $duration]($style)'
+style = 'fg:dur_fg bg:sub_bg'
 
 [character]
 success_symbol = '[](white)'
