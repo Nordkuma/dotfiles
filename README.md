@@ -119,8 +119,8 @@
    ```
 1. Generate zsh completions
    ```shell
-   uv generate-shell-completion zsh > ~/.zsh/completion/_uv
-   uvx --generate-shell-completion zsh > ~/.zsh/completion/_uvx
+   uv generate-shell-completion zsh > ~/.config/zsh/completions/_uv
+   uvx --generate-shell-completion zsh > ~/.config/zsh/completions/_uvx
    ```
 1. Install [Ruff](https://docs.astral.sh/ruff/installation/), [ty](https://docs.astral.sh/ty/installation/) with uv
    ```shell
@@ -135,8 +135,8 @@
    ```
 1. Generate zsh completions
    ```shell
-   rustup completions zsh > ~/.zsh/completion/_rustup
-   ln -s ~/.rustup/toolchains/{toolchain-name}/share/zsh/site-functions/_cargo ~/.zsh/completion/_cargo
+   rustup completions zsh > ~/.config/zsh/completions/_rustup
+   ln -s ~/.rustup/toolchains/{toolchain-name}/share/zsh/site-functions/_cargo ~/.config/zsh/completions/_cargo
    ```
 1. Install build tools on Linux
    ```shell
