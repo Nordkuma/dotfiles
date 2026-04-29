@@ -3,7 +3,7 @@ export LC_ALL='en_US.UTF-8'
 export LANG='en_US.UTF-8'
 export EDITOR='nvim'
 export PATH="$HOME/.local/bin:$PATH"
-export FPATH="$HOME/.zsh/completion:$FPATH"
+export FPATH="$HOME/.zsh/hook:$HOME/.zsh/completion:$FPATH"
 export KEYTIMEOUT=1
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=10000
@@ -28,7 +28,6 @@ zstyle ':completion:*:default' menu select=1
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
 
 # zsh hook
-export FPATH="$HOME/.zsh/hook:$FPATH"
 autoload -Uz add-zsh-hook
 #add-zsh-hook preexec update_gpg_tty
 add-zsh-hook precmd add_newline
@@ -36,6 +35,9 @@ add-zsh-hook precmd add_newline
 # zsh plugin
 source "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+# eza
+export EZA_CONFIG_DIR="$HOME/.config/eza"
 
 # gpg-agent
 unset SSH_AGENT_PID
@@ -63,29 +65,45 @@ eval "$(starship init zsh)"
 alias sudo='sudo '
 
 # ls
+if (( $+commands[eza] )); then
+  alias eza='eza -bg -F=auto -L=2 --group-directories-first --no-quotes --time-style=long-iso'
+  alias ls='eza'
+  alias la='eza -a'
+  alias ll='eza -l'
+  alias lt='eza -T'
+  alias lla='eza -al'
+  alias llt='eza -lT'
+  alias lta='eza -aT'
+  alias llta='eza -alT'
+else
 {{- if eq .chezmoi.os "darwin" }}
-alias ls='ls -FG'
+  alias ls='ls -FG'
+  alias la='ls -A'
+  alias ll='ls -l'
+  alias lla='ls -lA'
 {{- else }}
-alias ls='ls -F --color=auto --group-directories-first'
+  alias ls='ls -F --color=auto --group-directories-first --time-style="+%Y-%m-%d %H:%M"'
+  alias la='ls -A'
+  alias ll='ls -l'
+  alias lla='ls -lA'
 {{- end }}
-alias ll='ls -l'
-alias la='ls -A'
-alias lla='ls -lA'
+fi
 
 {{- if eq .chezmoi.os "linux" }}
 
 # open
 {{-   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
-function open() {
-    if [ $# != 1 ]; then
-        cmd.exe /c start $(wslpath -w $(pwd)) 2> /dev/null
-    else
-        if [ -e $1 ]; then
-            cmd.exe /c start $(wslpath -w $1) 2> /dev/null
-        else
-            echo "open: $1 : No such file or directory"
-        fi
-    fi
+open() {
+  local target
+  if [[ $# -ne 1 ]]; then
+    target=$PWD
+  elif [[ ! -e "$1" ]]; then
+    echo "open: $1: No such file or directory"
+    return 1
+  else
+    target="$1"
+  fi
+  powershell.exe /c start "$(wslpath -w "$target")" 2>/dev/null
 }
 {{-   else }}
 alias open='xdg-open'
@@ -104,8 +122,21 @@ alias pbpaste='xclip -selection clipboard -o'
 {{-   end }}
 {{- end }}
 
-# cd-git-root
-alias cd-git-root='cd $(git rev-parse --show-toplevel)'
+# cdgr
+alias cdgr='cd $(git rev-parse --show-toplevel)'
+
+# path
+path() {
+  local env="${1:-PATH}"
+  local value="${(P)env}"
+  [[ -z "$value" ]] && return 0
+  local -a dirs=("${(@)${(s.:.)value}:#}")
+  local width=${#${#dirs[@]}}
+  local i=1
+  for dir in "${dirs[@]}"; do
+    printf "%${width}d  %s\n" "$((i++))" "$dir"
+  done
+}
 
 # ssh-tmux
 alias ssh-tmux='(){ssh -t "$1" tmux new-session -A -s main}'
