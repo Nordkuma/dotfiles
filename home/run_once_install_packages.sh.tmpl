@@ -2,12 +2,12 @@
 {{- if eq .chezmoi.os "linux" }}
 {{-   if or (eq .chezmoi.osRelease.id "debian") (eq .chezmoi.osRelease.idLike "debian") }}
 sudo apt update
-sudo apt install fzf gnupg htop openssh-server tmux vim xclip zsh
+sudo apt install -y fzf gnupg htop openssh-server tmux vim xclip zsh
 curl -sS https://starship.rs/install.sh | sh
 {{-   end }}
 chsh -s $(which zsh)
 {{- else if eq .chezmoi.os "darwin" }}
 brew update
-brew install font-hackgen font-hackgen-nerd fzf gnupg htop neovim pinentry-mac starship tmux
+brew install eza font-hackgen font-hackgen-nerd fzf gnupg htop neovim pinentry-mac starship tmux
 $(brew --prefix)/opt/fzf/install
 {{- end }}
