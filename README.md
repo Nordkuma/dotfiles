@@ -3,7 +3,7 @@
 ### Linux
 1. Install curl, git
    ```shell
-   # Debian
+   # Debian/Ubuntu
    sudo apt update
    sudo apt install curl git
    ```
@@ -13,43 +13,60 @@
    ```shell
    xcode-select --install
    ```
-1. Install [Homebrew](https://brew.sh/) with installer or script
+1. Install [Homebrew](https://brew.sh/)
    ```shell
    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
    ```
 
 ## Installation
-1. Install [chezmoi](https://www.chezmoi.io/install/) with script or Homebrew
+### Linux
+1. Install and initialize [chezmoi](https://www.chezmoi.io/install/)
    ```shell
-   sudo sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
-   # or
+   sh -c "$(curl -fsLS https://get.chezmoi.io/lb)" -- init --apply Nordkuma
+   ```
+
+### macOS
+1. Install chezmoi with Homebrew
+   ```shell
    brew install chezmoi
    ```
 1. Initialize chezmoi
    ```shell
-   chezmoi init --apply https://github.com/Nordkuma/dotfiles.git
+   chezmoi init --apply Nordkuma
    ```
 
 ## Post-installation (optional)
 ### Container Engine
 1. Install [Docker Engine](https://docs.docker.com/engine/install/) or [Podman](https://podman.io/docs/installation)
 
+### eza
+1. Install [eza](https://github.com/eza-community/eza/blob/main/INSTALL.md) on Linux
+   ```shell
+   # Debian/Ubuntu
+   sudo mkdir -p /etc/apt/keyrings
+   curl -fsSL https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+   echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
+   sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+   sudo apt update
+   sudo apt install -y eza
+   ```
+
 ### Fonts
 1. Download [HackGen](https://github.com/yuru7/HackGen/releases/latest), [Roboto](https://fonts.google.com/specimen/Roboto), [Noto Sans JP](https://fonts.google.com/noto/specimen/Noto+Sans+JP)
 1. Unzip and install
 
 ### GPG for SSH
-1. Generate GPG key
+1. Generate a GPG key
    ```shell
    gpg --full-generate-key --expert
    ```
-   or import existing key
+   or import an existing key
    ```shell
    gpg --import <keyfile>
    gpg --edit-key <user-id>
    gpg> trust
    ```
-1. Get the keygrip of authentication subkey
+1. Get the keygrip of the authentication subkey
    ```shell
    gpg --list-keys --with-keygrip
    ```
@@ -71,11 +88,7 @@
    ```
 
 ### Neovim
-1. Install [Neovim](https://neovim.io/doc/install/) with Homebrew
-   ```shell
-   brew install neovim
-   ```
-   or by downloading AppImage
+1. Install [Neovim](https://neovim.io/doc/install/) by downloading an AppImage on Linux
    ```shell
    ARCH=$(uname -m)
    case "$ARCH" in
@@ -125,9 +138,9 @@
    rustup completions zsh > ~/.zsh/completion/_rustup
    ln -s ~/.rustup/toolchains/{toolchain-name}/share/zsh/site-functions/_cargo ~/.zsh/completion/_cargo
    ```
-1. Install build tools
+1. Install build tools on Linux
    ```shell
-   # Debian
+   # Debian/Ubuntu
    sudo apt install build-essential clang
    ```
 1. Install [cargo-update](https://github.com/nabijaczleweli/cargo-update) (optional)
@@ -136,10 +149,11 @@
    ```
 
 ### Tailscale
-1. Install [Tailscale](https://tailscale.com/download/) from App Store or with script
+1. Install [Tailscale](https://tailscale.com/download/) on Linux
    ```shell
    curl -fsSL https://tailscale.com/install.sh | sh
    ```
+   or install from the [App Store](https://apps.apple.com/ca/app/tailscale/id1475387142) on macOS
 1. Start Tailscale without using tailnet's DNS
    ```shell
    sudo tailscale up --accept-dns=false
