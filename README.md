@@ -88,29 +88,28 @@
    ```
 
 ### Neovim
-1. Install [Neovim](https://neovim.io/doc/install/) by downloading an AppImage on Linux
+1. Install [Neovim](https://neovim.io/doc/install/) on Linux
    ```shell
-   ARCH=$(uname -m)
-   case "$ARCH" in
+   # Debian/Ubuntu
+   case "$(uname -m)" in
      x86_64)  FILE="nvim-linux-x86_64.appimage" ;;
      aarch64) FILE="nvim-linux-arm64.appimage" ;;
-     *) echo "Unsupported architecture: $ARCH"; exit 1 ;;
+     *) echo "Unsupported architecture: $(uname -m)"; exit 1 ;;
    esac
-   curl -LO "https://github.com/neovim/neovim/releases/latest/download/$FILE"
-   chmod +x "$FILE"
-   sudo mv "$FILE" /usr/local/bin/nvim
-   sudo chown root:root /usr/local/bin/nvim
+   curl -fLO "https://github.com/neovim/neovim/releases/latest/download/$FILE"
+   sudo install -m 755 -o root "$FILE" /usr/local/bin/nvim
+   rm "$FILE"
    ```
 1. Install [Tree-sitter CLI](https://github.com/tree-sitter/tree-sitter/blob/master/crates/cli/README.md), [ripgrep](https://github.com/BurntSushi/ripgrep) with Cargo
    ```shell
    cargo install --locked tree-sitter-cli
    cargo install ripgrep
    ```
-1. Install [mac-ime](https://github.com/Nordkuma/mac-ime) for macOS or [win-ime](https://github.com/Nordkuma/win-ime) for WSL
 1. Launch Neovim and install Tree-sitter parsers
    ```vim
    :TSInstall <language>
    ```
+1. Install [mac-ime](https://github.com/Nordkuma/mac-ime) for macOS or [win-ime](https://github.com/Nordkuma/win-ime) for WSL
 
 ### Python
 1. Install [uv](https://docs.astral.sh/uv/getting-started/installation/)
@@ -136,7 +135,7 @@
 1. Generate zsh completions
    ```shell
    rustup completions zsh > ~/.config/zsh/completions/_rustup
-   ln -s ~/.rustup/toolchains/{toolchain-name}/share/zsh/site-functions/_cargo ~/.config/zsh/completions/_cargo
+   ln -s ~/.rustup/toolchains/$(rustup toolchain list | grep default | awk '{print $1}')/share/zsh/site-functions/_cargo ~/.config/zsh/completions/_cargo
    ```
 1. Install build tools on Linux
    ```shell
