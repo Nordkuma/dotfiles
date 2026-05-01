@@ -41,7 +41,7 @@ export EZA_CONFIG_DIR="$HOME/.config/eza"
 
 # gpg-agent
 unset SSH_AGENT_PID
-if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+if [[ ${gnupg_SSH_AUTH_SOCK_by:-0} -ne $$ ]]; then
   export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 fi
 export GPG_TTY="$TTY"
@@ -50,12 +50,12 @@ export GPG_TTY="$TTY"
 export FZF_DEFAULT_OPTS='--reverse'
 export FZF_TMUX=1
 export FZF_TMUX_OPTS='-p 50%'
-{{- if eq .chezmoi.os "darwin" }}
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-{{- else }}
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
-{{- end }}
+if fzf --zsh &>/dev/null; then
+  source <(fzf --zsh)
+elif [[ -d /usr/share/doc/fzf/examples ]]; then
+  source /usr/share/doc/fzf/examples/key-bindings.zsh
+  source /usr/share/doc/fzf/examples/completion.zsh
+fi
 
 # starship
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
