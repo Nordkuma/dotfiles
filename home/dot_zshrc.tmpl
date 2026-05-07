@@ -1,11 +1,5 @@
 # zsh config
-export LC_ALL='en_US.UTF-8'
-export LANG='en_US.UTF-8'
-export EDITOR='nvim'
-export PATH="$HOME/.local/bin:$PATH"
-export FPATH="$HOME/.config/zsh/hooks:$HOME/.config/zsh/completions:$FPATH"
 export KEYTIMEOUT=1
-export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=10000
 export SAVEHIST=10000
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
@@ -36,8 +30,13 @@ add-zsh-hook precmd add_newline
 source "$HOME/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "$HOME/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
-# eza
-export EZA_CONFIG_DIR="$HOME/.config/eza"
+# fzf
+if fzf --zsh &>/dev/null; then
+  source <(fzf --zsh)
+elif [[ -d /usr/share/doc/fzf/examples ]]; then
+  source /usr/share/doc/fzf/examples/key-bindings.zsh
+  source /usr/share/doc/fzf/examples/completion.zsh
+fi
 
 # gpg-agent
 unset SSH_AGENT_PID
@@ -46,19 +45,7 @@ if [[ ${gnupg_SSH_AUTH_SOCK_by:-0} -ne $$ ]]; then
 fi
 export GPG_TTY="$TTY"
 
-# fzf
-export FZF_DEFAULT_OPTS='--reverse'
-export FZF_TMUX=1
-export FZF_TMUX_OPTS='-p 50%'
-if fzf --zsh &>/dev/null; then
-  source <(fzf --zsh)
-elif [[ -d /usr/share/doc/fzf/examples ]]; then
-  source /usr/share/doc/fzf/examples/key-bindings.zsh
-  source /usr/share/doc/fzf/examples/completion.zsh
-fi
-
 # starship
-export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 eval "$(starship init zsh)"
 
 # sudo

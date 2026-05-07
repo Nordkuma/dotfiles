@@ -1,0 +1,25 @@
+# zsh config
+typeset -U path PATH fpath FPATH
+path+=(
+  "$HOME/.cargo/bin"(N-/)
+  "$HOME/.local/bin"(N-/)
+)
+fpath+=(
+  "$HOME/.config/zsh/hooks"(N/)
+  "$HOME/.config/zsh/completions"(N/)
+)
+export LC_ALL='en_US.UTF-8'
+export LANG='en_US.UTF-8'
+export EDITOR='nvim'
+export HISTFILE="$HOME/.zsh_history"
+
+# eza
+export EZA_CONFIG_DIR="$HOME/.config/eza"
+
+# fzf
+export FZF_DEFAULT_OPTS='--reverse'
+export FZF_TMUX=1
+export FZF_TMUX_OPTS='-p 50%'
+
+# starship
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
