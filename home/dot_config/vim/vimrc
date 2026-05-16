@@ -54,6 +54,8 @@ nnoremap x "_x
 nnoremap <Leader>l <cmd>nohlsearch<CR>
 nnoremap <Leader>o o<Esc>
 nnoremap <Leader>O O<Esc>
+nnoremap <Leader>q <cmd>q<CR>
+nnoremap <Leader>Q <cmd>q!<CR>
 nnoremap <Leader>w <cmd>w<CR>
 nnoremap <Leader>x <cmd>x<CR>
 vnoremap < <gv
