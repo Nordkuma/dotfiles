@@ -25,6 +25,8 @@ end
 map('n', '<Leader>l', '<cmd>nohlsearch<CR>', { silent = true })
 map('n', '<Leader>o', 'o<Esc>')
 map('n', '<Leader>O', 'O<Esc>')
+map('n', '<leader>q', '<cmd>q<CR>')
+map('n', '<leader>Q', '<cmd>q!<CR>')
 map('n', '<leader>w', '<cmd>w<CR>')
 map('n', '<leader>x', '<cmd>x<CR>')
 map('n', '<Right>', function() vim.fn.setcharpos('.', { 0, vim.fn.line('.'), vim.fn.charcol('$'), 0, vim.v.maxcol }) end)
