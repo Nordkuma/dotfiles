@@ -5,7 +5,6 @@ path+=(
   "$HOME/.local/bin"(N-/)
 )
 fpath+=(
-  "$HOME/.config/zsh/hooks"(N/)
   "$HOME/.config/zsh/completions"(N/)
 )
 export LC_ALL='en_US.UTF-8'
