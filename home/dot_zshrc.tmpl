@@ -49,7 +49,9 @@ _paste-in-insert-mode() {
   zle .bracketed-paste
   zle -K $_keymap
 }
+autoload -Uz edit-command-line
 bindkey -v
+bindkey -M vicmd '^e' edit-command-line
 bindkey -M vicmd '^@' _vi-cmd-mode-ime-off
 bindkey -M vicmd '^[' _vi-cmd-mode-ime-off
 bindkey -M vicmd '^[[A' beginning-of-buffer-or-history
@@ -62,6 +64,7 @@ bindkey -M viins '^@' _vi-cmd-mode-ime-off
 bindkey -M viins '^[' _vi-cmd-mode-ime-off
 zle -N _vi-cmd-mode-ime-off
 zle -N bracketed-paste _paste-in-insert-mode
+zle -N edit-command-line
 
 # zsh plugin
 source "$HOME/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
