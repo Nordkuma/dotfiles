@@ -4,9 +4,7 @@ path+=(
   "$HOME/.cargo/bin"(N-/)
   "$HOME/.local/bin"(N-/)
 )
-fpath+=(
-  "$HOME/.config/zsh/completions"(N/)
-)
+fpath+=("$HOME/.config/zsh/completions"(N/))
 export LC_ALL='en_US.UTF-8'
 export LANG='en_US.UTF-8'
 export EDITOR='nvim'
