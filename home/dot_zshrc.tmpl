@@ -3,28 +3,23 @@ export KEYTIMEOUT=1
 export HISTSIZE=10000
 export SAVEHIST=10000
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-
 autoload -Uz compinit
 if [[ -n "$HOME"/.zcompdump(#qN.mh+24) ]]; then
   compinit
 else
   compinit -C
 fi
-
-setopt append_history
-setopt auto_param_keys
-setopt correct
-setopt hist_ignore_all_dups
-setopt hist_reduce_blanks
-setopt list_types
-setopt share_history
-setopt no_beep
-setopt prompt_subst
-
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+setopt always_to_end auto_menu auto_param_keys complete_in_word correct interactive_comments list_types
+setopt append_history hist_ignore_all_dups hist_ignore_space hist_reduce_blanks share_history
+setopt no_beep prompt_subst
 zstyle ':completion:*' completer _complete _approximate
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*:default' menu select=1
+{{- if eq .chezmoi.os "darwin" }}
+zstyle ':completion:*:sudo:*' command-path ${(s.:.)PATH}
+{{- else }}
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
+{{- end }}
 
 # zsh hook
 _add-newline() {
@@ -34,31 +29,26 @@ _add-newline() {
     echo
   fi
 }
-
 _update-gpg-tty() {
   case ${1%% *} in
     chezmoi|git|scp|sftp|ssh|ssh-*)
       gpg-connect-agent updatestartuptty /bye >/dev/null ;;
   esac
 }
-
-autoload -Uz add-zsh-hook
-#add-zsh-hook preexec _update-gpg-tty
-add-zsh-hook precmd _add-newline
+precmd_functions+=(_add-newline)
+#preexec_functions+=(_update-gpg-tty)
 
 # zsh vi mode
 _vi-cmd-mode-ime-off() {
   (( $+commands[ime] )) && ime off &>/dev/null &!
   zle vi-cmd-mode
 }
-
 _paste-in-insert-mode() {
   local _keymap=$KEYMAP
   zle -K viins
   zle .bracketed-paste
   zle -K $_keymap
 }
-
 bindkey -v
 bindkey -M vicmd '^@' _vi-cmd-mode-ime-off
 bindkey -M vicmd '^[' _vi-cmd-mode-ime-off
@@ -70,7 +60,6 @@ bindkey -M viins '^?' backward-delete-char
 bindkey -M viins '^H' backward-delete-char
 bindkey -M viins '^@' _vi-cmd-mode-ime-off
 bindkey -M viins '^[' _vi-cmd-mode-ime-off
-
 zle -N _vi-cmd-mode-ime-off
 zle -N bracketed-paste _paste-in-insert-mode
 
