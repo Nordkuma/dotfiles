@@ -35,6 +35,7 @@ _update-gpg-tty() {
       gpg-connect-agent updatestartuptty /bye >/dev/null ;;
   esac
 }
+typeset -U precmd_functions preexec_functions
 precmd_functions+=(_add-newline)
 #preexec_functions+=(_update-gpg-tty)
 
@@ -58,6 +59,7 @@ bindkey -M vicmd '^[[A' beginning-of-buffer-or-history
 bindkey -M vicmd '^[[B' end-of-buffer-or-history
 bindkey -M vicmd '^[[C' vi-end-of-line
 bindkey -M vicmd '^[[D' vi-beginning-of-line
+bindkey -M viins '^e' edit-command-line
 bindkey -M viins '^?' backward-delete-char
 bindkey -M viins '^H' backward-delete-char
 bindkey -M viins '^@' _vi-cmd-mode-ime-off
