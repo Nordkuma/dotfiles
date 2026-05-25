@@ -84,7 +84,15 @@ if [[ ! -f "$_fzf_cache" ]] || [[ "$(command -v fzf)" -nt "$_fzf_cache" ]]; then
     fi
   fi
 fi
-[[ -f "$_fzf_cache" ]] && source "$_fzf_cache"
+if [[ -f "$_fzf_cache" ]]; then
+  source "$_fzf_cache"
+  bindkey -M vicmd '^F' fzf-history-widget
+  bindkey -M vicmd '^G' fzf-file-widget
+  bindkey -M vicmd '^R' redo
+  bindkey -M viins '^F' fzf-history-widget
+  bindkey -M viins '^G' fzf-file-widget
+  bindkey -M viins -r '^R'
+fi
 unset _fzf_cache
 
 # gpg-agent
