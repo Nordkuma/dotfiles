@@ -14,6 +14,9 @@ export HISTFILE="$HOME/.zsh_history"
 export EZA_CONFIG_DIR="$HOME/.config/eza"
 
 # fzf
+export FZF_ALT_C_COMMAND=''
+export FZF_CTRL_R_OPTS="--bind 'ctrl-x:execute-silent(echo -n {2..} | pbcopy)+abort'"
+export FZF_CTRL_T_OPTS="--bind 'ctrl-x:execute-silent(echo -n {} | pbcopy)+abort'"
 export FZF_DEFAULT_OPTS='--reverse'
 export FZF_TMUX=1
 export FZF_TMUX_OPTS='-p 50%'
