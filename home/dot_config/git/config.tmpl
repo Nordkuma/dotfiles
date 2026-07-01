@@ -1,0 +1,17 @@
+[user]
+{{- if eq .chezmoi.username "kuma" }}
+  name = Nordkuma
+  email = nordkuma@proton.me
+  signignkey = 85F390ADE3991E1E
+{{- else }}
+  name = Takuma Matsukawa
+  email =
+{{- end }}
+[init]
+  defaultBranch = main
+[core]
+  editor = nvim
+{{- if eq .chezmoi.username "kuma" }}
+[commit]
+  gpgsign = true
+{{- end }}
