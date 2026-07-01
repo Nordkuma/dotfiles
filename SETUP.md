@@ -72,7 +72,7 @@
    ```vim
    :TSInstall <language>
    ```
-1. Install [mac-ime](https://github.com/Nordkuma/mac-ime) for macOS or [win-ime](https://github.com/Nordkuma/win-ime) for WSL
+1. Install [mac-ime](https://github.com/Nordkuma/mac-ime) for macOS or [keymap](https://github.com/Nordkuma/keymap) for WSL
 
 ## Python
 1. Install [uv](https://docs.astral.sh/uv/getting-started/installation/)
