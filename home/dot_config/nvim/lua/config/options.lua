@@ -38,7 +38,7 @@ if not vim.g.vscode then
 end
 opt.virtualedit = 'onemore'
 opt.whichwrap = 'b,s,h,l,<,>,[,]'
-opt.wildmode = { 'list:longest' }
+opt.wildmode = { 'list:longest', 'full' }
 
 -- Tab / Indent
 if not vim.g.vscode then

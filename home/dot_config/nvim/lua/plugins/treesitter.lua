@@ -29,8 +29,8 @@ return {
             { ']C',        mode = { 'n', 'x', 'o' } },
             { '[c',        mode = { 'n', 'x', 'o' } },
             { '[C',        mode = { 'n', 'x', 'o' } },
-            { '<leader>a', mode = 'n' },
-            { '<leader>A', mode = 'n' },
+            { '<Leader>a', mode = 'n' },
+            { '<Leader>A', mode = 'n' },
         },
         init = function()
             vim.g.no_plugin_maps = true
@@ -72,10 +72,10 @@ return {
             vim.keymap.set({ 'n', 'x', 'o' }, '[C', function()
                 require('nvim-treesitter-textobjects.move').goto_previous_end('@class.outer', 'textobjects')
             end)
-            vim.keymap.set('n', '<leader>a', function()
+            vim.keymap.set('n', '<Leader>a', function()
                 require('nvim-treesitter-textobjects.swap').swap_next '@parameter.inner'
             end)
-            vim.keymap.set('n', '<leader>A', function()
+            vim.keymap.set('n', '<Leader>A', function()
                 require('nvim-treesitter-textobjects.swap').swap_previous '@parameter.inner'
             end)
         end,

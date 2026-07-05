@@ -5,9 +5,9 @@ return {
         { 'https://github.com/nvim-telescope/telescope-fzf-native.nvim.git', build = 'make' },
     },
     keys = {
-        { '<leader>ff', mode = 'n' },
-        { '<leader>fg', mode = 'n' },
-        { '<leader>fw', mode = { 'n', 'x' } },
+        { '<Leader>ff', mode = 'n' },
+        { '<Leader>fg', mode = 'n' },
+        { '<Leader>fw', mode = { 'n', 'x' } },
     },
     opts = {
         defaults = {
@@ -20,12 +20,12 @@ return {
     config = function(_, opts)
         require('telescope').setup(opts)
         local builtin = require('telescope.builtin')
-        vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
-        vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-        vim.keymap.set('n', '<leader>fw', function()
+        vim.keymap.set('n', '<Leader>ff', builtin.find_files, { desc = 'Telescope find files' })
+        vim.keymap.set('n', '<Leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
+        vim.keymap.set('n', '<Leader>fw', function()
             builtin.live_grep({ default_text = vim.fn.expand('<cword>') })
         end, { desc = 'Search current word' })
-        vim.keymap.set('x', '<leader>fw', function()
+        vim.keymap.set('x', '<Leader>fw', function()
             local saved = { vim.fn.getreg('v'), vim.fn.getregtype('v') }
             vim.cmd('noautocmd normal! "vy')
             local text = vim.fn.getreg('v')

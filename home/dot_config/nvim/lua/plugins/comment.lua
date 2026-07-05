@@ -7,20 +7,20 @@ return {
         },
     },
     keys = {
-        { '<leader>cc', mode = 'n' },
-        { '<leader>bc', mode = 'n' },
-        { '<leader>c',  mode = { 'n', 'x' } },
-        { '<leader>b',  mode = { 'n', 'x' } },
+        { '<Leader>cc', mode = 'n' },
+        { '<Leader>bc', mode = 'n' },
+        { '<Leader>c',  mode = { 'n', 'x' } },
+        { '<Leader>b',  mode = { 'n', 'x' } },
     },
     opts = function()
         return {
             toggler = {
-                line = '<leader>cc',
-                block = '<leader>bc',
+                line = '<Leader>cc',
+                block = '<Leader>bc',
             },
             opleader = {
-                line = '<leader>c',
-                block = '<leader>b',
+                line = '<Leader>c',
+                block = '<Leader>b',
             },
             pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
         }

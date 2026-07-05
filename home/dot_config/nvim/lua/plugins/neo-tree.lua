@@ -13,6 +13,17 @@ return {
     },
     config = function(_, opts)
         require('neo-tree').setup(opts)
+        local function strip_italic()
+            for _, name in ipairs({ 'NeoTreeGitConflict', 'NeoTreeGitUntracked', 'NeoTreeMessage', 'NeoTreeRootName' }) do
+                local hl = vim.api.nvim_get_hl(0, { name = name, link = false })
+                if hl.italic then
+                    hl.italic = false
+                    vim.api.nvim_set_hl(0, name, hl)
+                end
+            end
+        end
+        strip_italic()
+        vim.api.nvim_create_autocmd('ColorScheme', { callback = strip_italic })
         vim.api.nvim_create_autocmd('QuitPre', {
             callback = function()
                 local tree_wins = {}

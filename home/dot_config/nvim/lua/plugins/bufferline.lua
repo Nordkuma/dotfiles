@@ -6,6 +6,10 @@ return {
         'https://github.com/nvim-tree/nvim-web-devicons.git',
     },
     event = 'VeryLazy',
+    keys = {
+        { '<Leader>[', function() require('bufferline').cycle(-1) end, desc = 'Previous buffer' },
+        { '<Leader>]', function() require('bufferline').cycle(1) end,  desc = 'Next buffer' },
+    },
     opts = function()
         local opened_dir = vim.fn.argc() > 0 and vim.fn.isdirectory(vim.fn.argv(0)) == 1
         return {
