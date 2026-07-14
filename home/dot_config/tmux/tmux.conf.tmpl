@@ -12,66 +12,34 @@ bind '|' split-window -h -c "#{pane_current_path}"
 bind '-' split-window -v -c "~"
 bind '_' split-window -v -c "#{pane_current_path}"
 ## Pane
-bind e setw synchronize-panes \; display "Pane sync #{?synchronize-panes,enabled,disabled}"
-bind C-h select-layout even-horizontal
-bind C-v select-layout even-vertical
+bind y setw synchronize-panes
+bind C-h select-layout even-vertical
+bind C-v select-layout even-horizontal
 bind C-t select-layout tiled
-bind -r h select-pane -L
-bind -r j select-pane -D
-bind -r k select-pane -U
-bind -r l select-pane -R
 bind -r H resize-pane -L 1
 bind -r J resize-pane -D 1
 bind -r K resize-pane -U 1
 bind -r L resize-pane -R 1
-## Other
-bind r source ~/.tmux.conf \; display "Config reloaded"
+bind -r h select-pane -L
+bind -r j select-pane -D
+bind -r k select-pane -U
+bind -r l select-pane -R
+## Copy mode
 bind -T copy-mode-vi v send -X begin-selection
+bind -T copy-mode-vi V send -X select-line
+bind -T copy-mode-vi C-v send -X rectangle-toggle
+bind -T copy-mode-vi y send -X copy-selection-and-cancel
+## Mouse
+bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-selection-and-cancel
+bind -T root WheelUpPane if-shell -F -t = "#{alternate_on}" "send-keys -M" "select-pane -t =; copy-mode -e; send-keys -M"
+bind -T root WheelDownPane if-shell -F -t = "#{alternate_on}" "send-keys -M" "select-pane -t =; send-keys -M"
+## Other
+bind r source ~/.config/tmux/tmux.conf \; display "Config reloaded"
 
 # Clipboard
 set -g set-clipboard on
 
-# History
-set -g history-limit 100000
-
-# Time
-set -g escape-time 10
-set -g display-time 1500
-set -g repeat-time 500
-
-# True color
-set -g default-terminal "xterm-256color"
-set -ag terminal-overrides ",xterm-256color:RGB"
-
-# Window
-set -g renumber-windows on
-set -g base-index 1
-
-# Pane
-set -g pane-base-index 1
-set -g pane-border-lines heavy
-set -g pane-border-style "fg=colour237"
-set -g pane-active-border-style "fg=colour244,bold"
-
-# Status line
-set -g status-style "fg=colour252,bg=colour237"
-set -g status-left-length 40
-{{- if eq .chezmoi.os "linux" }}
-set -g status-left "#[fg=colour237,bg=terminal]#[fg=colour148,bg=colour237]#[bg=colour148,fg=colour237]#h#[fg=colour148,bg=colour237]"
-{{- else }}
-set -g status-left "#[fg=colour237,bg=terminal]#[fg=colour38,bg=colour237]#[bg=colour38,fg=colour237]#h#[fg=colour38,bg=colour237]"
-{{- end }}
-set -g status-right "#[fg=colour237,bg=terminal]"
-set -g status-justify right
-set -g window-status-format "#[fg=colour252] #I #W "
-{{- if eq .chezmoi.os "linux" }}
-set -g window-status-current-format "#[fg=colour148,bg=colour237]#{?client_prefix,#[fg=colour75],}#[bg=colour148,fg=colour237]#{?client_prefix,#[bg=colour75],}#I #W#[fg=colour148,bg=colour237]#{?client_prefix,#[fg=colour75],}"
-{{- else }}
-set -g window-status-current-format "#[fg=colour38,bg=colour237]#{?client_prefix,#[fg=colour220],}#[bg=colour38,fg=colour237]#{?client_prefix,#[bg=colour220],}#I #W#[fg=colour38,bg=colour237]#{?client_prefix,#[fg=colour220],}"
-{{- end }}
-
-# Copy mode
-set -g mode-keys vi
+# Copy command
 {{- if eq .chezmoi.os "linux" }}
 {{-   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
 set -s copy-command 'tee <&0 | clip.exe'
@@ -82,19 +50,51 @@ set -s copy-command 'xclip -selection clipboard'
 set -s copy-command 'pbcopy'
 {{- end }}
 
+# History
+set -g history-limit 100000
+
 # Mouse
 set -g mouse on
-bind -T root WheelUpPane if-shell -F -t = "#{alternate_on}" "send-keys -M" "select-pane -t =; copy-mode -e; send-keys -M"
-bind -T root WheelDownPane if-shell -F -t = "#{alternate_on}" "send-keys -M" "select-pane -t =; send-keys -M"
+
+# Pane
+set -g pane-base-index 1
+set -g pane-border-lines heavy
+set -g pane-border-style "fg=colour237"
+set -g pane-active-border-style "fg=colour244 bold"
+
+# Status line
+set -g status-style "fg=colour252 bg=colour237"
+set -g status-left-length 40
 {{- if eq .chezmoi.os "linux" }}
-{{-   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
-bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "tee <&0 | clip.exe"
-{{-   else }}
-bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "xclip -selection clipboard"
-{{-   end }}
-{{- else if eq .chezmoi.os "darwin" }}
-bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "pbcopy"
+set -g status-left "#[fg=colour237 bg=terminal]#[fg=colour148 bg=colour237]#[bg=colour148 fg=colour237]#h#[fg=colour148 bg=colour237]#{?pane_synchronized, #[fg=colour75 bg=colour237]#[bg=colour75 fg=colour237]sync#[fg=colour75 bg=colour237],}"
+{{- else }}
+set -g status-left "#[fg=colour237 bg=terminal]#[fg=colour38 bg=colour237]#[bg=colour38 fg=colour237]#h#[fg=colour38 bg=colour237]#{?pane_synchronized, #[fg=colour220 bg=colour237]#[bg=colour220 fg=colour237]sync#[fg=colour220 bg=colour237],}"
 {{- end }}
+set -g status-right "#[fg=colour237 bg=terminal]"
+set -g status-justify right
+set -g window-status-format "#[fg=colour252] #I #W "
+{{- if eq .chezmoi.os "linux" }}
+set -g window-status-current-format "#[fg=colour148 bg=colour237]#{?client_prefix,#[fg=colour75],}#[bg=colour148 fg=colour237]#{?client_prefix,#[bg=colour75],}#I #W#[fg=colour148 bg=colour237]#{?client_prefix,#[fg=colour75],}"
+{{- else }}
+set -g window-status-current-format "#[fg=colour38 bg=colour237]#{?client_prefix,#[fg=colour220],}#[bg=colour38 fg=colour237]#{?client_prefix,#[bg=colour220],}#I #W#[fg=colour38 bg=colour237]#{?client_prefix,#[fg=colour220],}"
+{{- end }}
+
+# Time
+set -g escape-time 10
+set -g display-time 1500
+set -g repeat-time 500
+
+# True color
+set -g default-terminal "xterm-256color"
+set -ag terminal-overrides ",xterm-256color:RGB"
+
+# Vi mode
+set -g mode-keys vi
+set -g status-keys vi
+
+# Window
+set -g renumber-windows on
+set -g base-index 1
 
 # Plugin
 set -g @continuum-save-interval '60'
