@@ -37,12 +37,13 @@ bind -T root WheelDownPane if-shell -F -t = "#{alternate_on}" "send-keys -M" "se
 bind r source ~/.config/tmux/tmux.conf \; display "Config reloaded"
 
 # Clipboard
+set -g allow-passthrough on
 set -g set-clipboard on
 
 # Copy command
 {{- if eq .chezmoi.os "linux" }}
 {{-   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
-set -s copy-command 'tee <&0 | clip.exe'
+set -s copy-command 'clip.exe'
 {{-   else }}
 set -s copy-command 'xclip -selection clipboard'
 {{-   end }}
