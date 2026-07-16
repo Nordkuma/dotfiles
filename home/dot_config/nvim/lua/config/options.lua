@@ -18,7 +18,7 @@ opt.updatetime = 500
 if not vim.g.vscode then
     opt.cursorline = true
     opt.list = true
-    opt.listchars = { tab = '>-', trail = '-', extends = '>', precedes = '<', nbsp = '%' }
+    opt.listchars = { tab = ' ', trail = '·', extends = '', precedes = '', nbsp = '󱁐' }
     opt.showmode = false
     opt.number = true
 end
