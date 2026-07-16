@@ -10,6 +10,20 @@ return {
         { '<Leader>[', function() require('bufferline').cycle(-1) end, desc = 'Previous buffer' },
         { '<Leader>]', function() require('bufferline').cycle(1) end,  desc = 'Next buffer' },
     },
+    init = function()
+        vim.api.nvim_create_autocmd('FileType', {
+            pattern = 'neo-tree',
+            desc = 'Bold text for bufferline explorer offset',
+            callback = function()
+                local ok, hl = pcall(vim.api.nvim_get_hl, 0, { name = 'NeoTreeNormal', link = false })
+                vim.api.nvim_set_hl(
+                    0,
+                    'BufferlineOffsetNeoTree',
+                    vim.tbl_extend('force', ok and hl or {}, { bold = true })
+                )
+            end,
+        })
+    end,
     opts = function()
         local opened_dir = vim.fn.argc() > 0 and vim.fn.isdirectory(vim.fn.argv(0)) == 1
         return {
@@ -22,9 +36,10 @@ return {
                 offsets = {
                     {
                         filetype = 'neo-tree',
-                        text = 'File Explorer',
+                        text = '󰥨 EXPLORER',
                         text_align = 'left',
                         separator = false,
+                        highlight = 'BufferlineOffsetNeoTree',
                     },
                 },
             },
