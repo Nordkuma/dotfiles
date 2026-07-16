@@ -67,9 +67,9 @@ set -g pane-active-border-style "fg=colour244 bold"
 set -g status-style "fg=colour252 bg=colour237"
 set -g status-left-length 40
 {{- if eq .chezmoi.os "linux" }}
-set -g status-left "#[fg=colour237 bg=terminal]#[fg=colour148 bg=colour237]#[bg=colour148 fg=colour237]#h#[fg=colour148 bg=colour237]#{?pane_synchronized, #[fg=colour75 bg=colour237]#[bg=colour75 fg=colour237]sync#[fg=colour75 bg=colour237],}"
+set -g status-left "#[fg=colour237 bg=terminal]#[fg=colour148 bg=colour237]#[bg=colour148 fg=colour237]#h#[fg=colour148 bg=colour237]#{?window_zoomed_flag, #[fg=colour75 bg=colour237]#[bg=colour75 fg=colour237] zoom#[fg=colour75 bg=colour237],}#{?pane_synchronized, #[fg=colour75 bg=colour237]#[bg=colour75 fg=colour237] sync#[fg=colour75 bg=colour237],}"
 {{- else }}
-set -g status-left "#[fg=colour237 bg=terminal]#[fg=colour38 bg=colour237]#[bg=colour38 fg=colour237]#h#[fg=colour38 bg=colour237]#{?pane_synchronized, #[fg=colour220 bg=colour237]#[bg=colour220 fg=colour237]sync#[fg=colour220 bg=colour237],}"
+set -g status-left "#[fg=colour237 bg=terminal]#[fg=colour38 bg=colour237]#[bg=colour38 fg=colour237]#h#[fg=colour38 bg=colour237]#{?window_zoomed_flag, #[fg=colour220 bg=colour237]#[bg=colour220 fg=colour237] zoom#[fg=colour220 bg=colour237],}#{?pane_synchronized, #[fg=colour220 bg=colour237]#[bg=colour220 fg=colour237] sync#[fg=colour220 bg=colour237],}"
 {{- end }}
 set -g status-right "#[fg=colour237 bg=terminal]"
 set -g status-justify right
