@@ -1,7 +1,4 @@
 # Setup
-## Container Engine
-1. Install [Docker Engine](https://docs.docker.com/engine/install/) or [Podman](https://podman.io/docs/installation)
-
 ## eza
 1. Install [eza](https://github.com/eza-community/eza/blob/main/INSTALL.md) on Linux
    ```shell
@@ -74,6 +71,9 @@
    ```
 1. Install [mac-ime](https://github.com/Nordkuma/mac-ime) for macOS or [keymap](https://github.com/Nordkuma/keymap) for WSL
 
+## Podman
+1. Install [Podman](https://podman.io/docs/installation)
+
 ## Python
 1. Install [uv](https://docs.astral.sh/uv/getting-started/installation/)
    ```shell
@@ -91,6 +91,11 @@
    ```
 
 ## Rust
+1. Install build tools on Linux
+   ```shell
+   # Debian/Ubuntu
+   sudo apt install build-essential clang
+   ```
 1. Install [Rust](https://rust-lang.org/tools/install/)
    ```shell
    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -100,13 +105,9 @@
    rustup completions zsh > ~/.config/zsh/completions/_rustup
    ln -s ~/.rustup/toolchains/$(rustup toolchain list | grep default | awk '{print $1}')/share/zsh/site-functions/_cargo ~/.config/zsh/completions/_cargo
    ```
-1. Install build tools on Linux
-   ```shell
-   # Debian/Ubuntu
-   sudo apt install build-essential clang
-   ```
 1. Install [cargo-update](https://github.com/nabijaczleweli/cargo-update) (optional)
    ```shell
+   sudo apt instal libssl-dev pkgconf
    cargo install cargo-update
    ```
 
