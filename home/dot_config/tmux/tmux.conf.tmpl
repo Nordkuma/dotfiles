@@ -74,11 +74,15 @@ set -g status-left "#[fg=colour237 bg=terminal]#[fg=colour38 bg=colour237]
 set -g status-right "#[fg=colour237 bg=terminal]"
 set -g status-justify right
 set -g window-status-format "#[fg=colour252] #I #W "
+set -g window-status-current-style default
 {{- if eq .chezmoi.os "linux" }}
 set -g window-status-current-format "#[fg=colour148 bg=colour237]#{?client_prefix,#[fg=colour75],}#[bg=colour148 fg=colour237]#{?client_prefix,#[bg=colour75],}#I #W#[fg=colour148 bg=colour237]#{?client_prefix,#[fg=colour75],}"
 {{- else }}
 set -g window-status-current-format "#[fg=colour38 bg=colour237]#{?client_prefix,#[fg=colour220],}#[bg=colour38 fg=colour237]#{?client_prefix,#[bg=colour220],}#I #W#[fg=colour38 bg=colour237]#{?client_prefix,#[fg=colour220],}"
 {{- end }}
+
+# Theme
+set -g theme terminal
 
 # Time
 set -g escape-time 10
