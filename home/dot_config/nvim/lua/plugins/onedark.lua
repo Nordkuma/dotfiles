@@ -3,6 +3,9 @@ return {
     priority = 1000,
     opts = {
         code_style = { comments = 'none' },
+        highlights = {
+            ['@markup.quote'] = { fmt = 'none' },
+        },
     },
     config = function(_, opts)
         require('onedark').setup(opts)

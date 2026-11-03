@@ -10,6 +10,12 @@ return {
         { '<Leader>sr', mode = 'n' },
     },
     opts = {
+        custom_surroundings = {
+            ['('] = { output = { left = '(', right = ')' } },
+            ['['] = { output = { left = '[', right = ']' } },
+            ['{'] = { output = { left = '{', right = '}' } },
+            ['<'] = { output = { left = '<', right = '>' } },
+        },
         mappings = {
             add = '<Leader>sa',
             delete = '<Leader>sd',
