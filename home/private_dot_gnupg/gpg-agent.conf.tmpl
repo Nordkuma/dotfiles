@@ -1,4 +1,5 @@
+browser-socket none
 enable-ssh-support
-{{ if eq .chezmoi.os "darwin" -}}
+{{- if eq .chezmoi.os "darwin" }}
 pinentry-program /opt/homebrew/bin/pinentry-mac
-{{ end -}}
+{{- end }}
