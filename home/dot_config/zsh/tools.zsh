@@ -3,6 +3,17 @@ export FZF_ALT_C_COMMAND=''
 export FZF_CTRL_R_OPTS="--bind 'ctrl-x:execute-silent(printf %s {1} > /tmp/.fzf-copy-$$)+abort'"
 export FZF_CTRL_T_OPTS="--bind 'ctrl-x:execute-silent(printf %s {} > /tmp/.fzf-copy-$$)+abort'"
 
+fzf-tmux() {
+  [[ -n $TMUX && ${@[(Ie)--]} -gt 0 ]] || { command fzf-tmux "$@"; return }
+  local _cols _rows
+  read -r _cols _rows <<< "$(tmux display -p '#{window_width} #{window_height}')"
+  local _w=$(( _cols / 2 )) _h=$(( _rows / 2 ))
+  (( _w = _w < 80 ? 80 : _w > 110 ? 110 : _w ))
+  (( _h = _h < 20 ? 20 : _h > 30 ? 30 : _h ))
+  shift $(( ${@[(i)--]} - 1 ))
+  command fzf-tmux -p "$(( _w > _cols ? _cols : _w )),$(( _h > _rows ? _rows : _h ))" "$@"
+}
+
 _fzf_cache="${XDG_CACHE_HOME:-$HOME/.cache}/fzf/fzf.zsh"
 
 if [[ ! -f "$_fzf_cache" ]] || [[ "$(command -v fzf)" -nt "$_fzf_cache" ]]; then
