@@ -16,7 +16,9 @@ export EZA_CONFIG_DIR="$HOME/.config/eza"
 # fzf
 export FZF_DEFAULT_OPTS='--reverse'
 export FZF_TMUX=1
-export FZF_TMUX_OPTS='-p 50%'
 
 # starship
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+
+# tmux
+[[ -o interactive && $TERM_PROGRAM != tmux ]] && unset TMUX TMUX_PANE
