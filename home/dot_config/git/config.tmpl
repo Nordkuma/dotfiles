@@ -2,16 +2,21 @@
 {{- if eq .chezmoi.username "kuma" }}
   name = Nordkuma
   email = nordkuma@proton.me
-  signignkey = 85F390ADE3991E1E
+  signingKey = 85F390ADE3991E1E
 {{- else }}
   name = Takuma Matsukawa
   email =
+  signingKey =
 {{- end }}
 [init]
   defaultBranch = main
 [core]
   editor = nvim
-{{- if eq .chezmoi.username "kuma" }}
-[commit]
-  gpgsign = true
+{{- if ne .chezmoi.username "kuma" }}
+[gpg]
+  format = ssh
 {{- end }}
+[commit]
+  gpgSign = true
+[tag]
+  gpgSign = true
