@@ -36,3 +36,9 @@ source "$HOME/.config/zsh/tools.zsh"
 
 # commands
 source "$HOME/.config/zsh/commands.zsh"
+
+{{- if ne .chezmoi.username "kuma" }}
+
+# kiro
+[[ -n $KIRO_SESSION_ID ]] && zshaddhistory() { return 2 }
+{{- end }}
