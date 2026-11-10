@@ -39,6 +39,6 @@ source "$HOME/.config/zsh/commands.zsh"
 
 {{- if ne .chezmoi.username "kuma" }}
 
-# kiro
-[[ -n $KIRO_SESSION_ID ]] && zshaddhistory() { return 2 }
+# Kiro workaround for https://github.com/kirodotdev/Kiro/issues/10233
+if [[ -n $KIRO_SESSION_ID ]] unset HISTFILE
 {{- end }}
