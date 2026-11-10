@@ -1,5 +1,8 @@
 # sudo
 alias sudo='sudo '
+{{- if eq .chezmoi.os "darwin" }}
+alias sudoedit='sudo -e'
+{{- end }}
 
 # ls
 if (( $+commands[eza] )); then
