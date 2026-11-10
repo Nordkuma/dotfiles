@@ -21,4 +21,4 @@ export FZF_TMUX=1
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
 # tmux
-[[ -o interactive && $TERM_PROGRAM != tmux ]] && unset TMUX TMUX_PANE
+if [[ -o interactive && $TERM_PROGRAM != tmux ]] unset TMUX TMUX_PANE
